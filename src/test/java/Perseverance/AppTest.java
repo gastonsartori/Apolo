@@ -164,10 +164,4 @@ public class AppTest
         assertEquals(carta,pila.getUltimaCarta());
     }
 
-
-
-
-
-
-
 }

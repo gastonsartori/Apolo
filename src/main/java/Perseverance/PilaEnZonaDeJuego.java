@@ -5,17 +5,23 @@ import java.util.ArrayList;
 public class PilaEnZonaDeJuego extends PilaDeCartas{
 
     @Override
-    public void agregarCartas(ArrayList<Carta> cartas) {
+    public boolean movimientoValido(ArrayList<Carta> cartas) {
         if(pila.isEmpty()) {                                    // Si la pila en zona de juego esta vacia
             if(cartas.get(0).getValor().ordinal() == 12){       //si la carta es una K
-                pila.addAll(cartas);                            //Agrego las cartas a la pila
+                return true;                            //Agrego las cartas a la pila
             }
         }
         else{                                                                   //Si la pila NO esta vacia
             if(comprobarPalo(cartas.get(0)) && comprobarValor(cartas.get(0))){  //El palo y valor de la carta es correcto
-                pila.addAll(cartas);                                            //Agrego las cartas a la pila
+                return true;                                           //Agrego las cartas a la pila
             }
         }
+        return false;
+    }
+
+    @Override
+    public void agregarCartas(ArrayList<Carta> cartas) {
+        pila.addAll(cartas);
     }
 
     @Override

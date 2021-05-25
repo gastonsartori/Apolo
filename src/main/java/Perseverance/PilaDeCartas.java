@@ -21,6 +21,7 @@ public abstract class PilaDeCartas{
         return pila.get(getCartasRestantes()-1);
     }
 
+    public abstract boolean movimientoValido(ArrayList<Carta> cartas);
     public abstract void agregarCartas(ArrayList<Carta> cartas);
     public abstract ArrayList<Carta> obtenerCartas(int index);
     public abstract void sacarCartas(ArrayList<Carta> cartas);
