@@ -3,6 +3,7 @@ package Perseverance;
 import java.util.ArrayList;
 
 public class PilaEnZonaDeEscalera extends PilaDeCartas{
+
     public PilaEnZonaDeEscalera(){
         super();
     }
@@ -20,20 +21,19 @@ public class PilaEnZonaDeEscalera extends PilaDeCartas{
                 }
             }
         }
-
     }
 
     @Override
     public ArrayList<Carta> obtenerCartas(int index) {
         ArrayList<Carta> ultima=new ArrayList<Carta>();
-        ultima.add(pila.get(cartasRestantes-1));
+        ultima.add(pila.get(getCartasRestantes()-1));
         //VER DE AGREGAR PARA SACAR ULTIMA
         return ultima;
     }
 
     @Override
     public void sacarCartas(ArrayList<Carta> cartas) {
-        pila.remove(cartasRestantes-1);
+        pila.remove(getCartasRestantes()-1);
     }
 
     @Override

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 /**
  * Unit test for simple App.
  */
@@ -45,5 +47,55 @@ public class AppTest
         }
         assertEquals(true,mezclado);
     }
+
+    @Test
+    public void testAgregarCZDJVaciaK(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.K);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(carta,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarCZDJVaciaNoK(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(null,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarCZDJValido(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.Tres);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+
+        pila.agregarCartas(cartas);
+
+        assertEquals(null,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarCZDJNoValido(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(null,pila.getUltimaCarta());
+    }
+
+
+
+
+
 
 }

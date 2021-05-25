@@ -4,22 +4,23 @@ import java.util.ArrayList;
 
 public abstract class PilaDeCartas{
     protected ArrayList<Carta> pila;
-    protected int cartasRestantes;
+
 
     public PilaDeCartas() {
         this.pila = new ArrayList<Carta>();
-        this.cartasRestantes = pila.size();
     }
 
     public ArrayList<Carta> getPila() {
         return pila;
     }
 
-    public int getCartasRestantes() {
-        return cartasRestantes;
-    }
+    public int getCartasRestantes() { return pila.size(); }
+
     public Carta getUltimaCarta(){
-        return pila.get(cartasRestantes-1);
+        if(pila.isEmpty()){
+            return null;
+        }
+        return pila.get(getCartasRestantes()-1);
     }
 
     public abstract void agregarCartas(ArrayList<Carta> cartas);
