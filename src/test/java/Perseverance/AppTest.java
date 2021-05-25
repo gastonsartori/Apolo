@@ -55,7 +55,6 @@ public class AppTest
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
 
-
         assertEquals(true,pila.movimientoValido(cartas));
     }
 
@@ -155,5 +154,7 @@ public class AppTest
 
         assertEquals(false,pila.movimientoValido(cartas2));
     }
+
+
 
 }

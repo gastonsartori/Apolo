@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class PilaEnZonaDeJuego extends PilaDeCartas{
 
+    public PilaEnZonaDeJuego() {
+        super();
+        tipo="juego";
+    }
+
     @Override
     public boolean movimientoValido(ArrayList<Carta> cartas) {
         if(pila.isEmpty()) {                                    // Si la pila en zona de juego esta vacia
@@ -38,6 +43,7 @@ public class PilaEnZonaDeJuego extends PilaDeCartas{
         for (int i = 0; i < cartas.size()-1; i++) {
             pila.remove(cartas.get(i));
         }
+        voltearUltimaCarta();
     }
 
     @Override
@@ -61,6 +67,10 @@ public class PilaEnZonaDeJuego extends PilaDeCartas{
             return true;
         }
         return false;
+    }
+
+    public void voltearUltimaCarta(){
+        getUltimaCarta().darVuelta();
     }
 
 

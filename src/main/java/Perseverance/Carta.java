@@ -25,8 +25,10 @@ public class Carta {
     public ImageIcon getImagen() { return imagen; }
 
     public void darVuelta(){
-        this.visible=true;
-        this.imagen=new ImageIcon("imagenbocaarriba");
+        if(!visible) {
+            this.visible = true;
+            this.imagen = new ImageIcon("imagenbocaarriba");
+        }
     }
 
     @Override

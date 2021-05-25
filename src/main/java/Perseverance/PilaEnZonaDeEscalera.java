@@ -6,6 +6,7 @@ public class PilaEnZonaDeEscalera extends PilaDeCartas{
 
     public PilaEnZonaDeEscalera(){
         super();
+        tipo="escalera";
     }
 
     @Override

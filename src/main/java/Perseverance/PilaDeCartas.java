@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public abstract class PilaDeCartas{
     protected ArrayList<Carta> pila;
+    protected String tipo;
 
     public PilaDeCartas() {
         this.pila = new ArrayList<Carta>();
     }
 
+    public String getTipo() { return tipo; }
     public ArrayList<Carta> getPila() {
         return pila;
     }
