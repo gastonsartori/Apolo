@@ -70,5 +70,104 @@ public class AppTest
         assertEquals(null,pila.getUltimaCarta());
     }
 
+    @Test
+    public void testAgregarPZDJValido(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.K);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+
+        pila.agregarCartas(cartas);
+
+        Carta carta2 = new Carta(Palo.Picas,Valor.Q);
+        ArrayList<Carta> cartas2=new ArrayList<Carta>();
+        cartas2.add(carta2);
+
+        pila.agregarCartas(cartas2);
+
+        assertEquals(carta2,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDJNoValido(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.K);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+
+        pila.agregarCartas(cartas);
+
+        Carta carta2 = new Carta(Palo.Diamantes,Valor.Q);
+        ArrayList<Carta> cartas2=new ArrayList<Carta>();
+        cartas2.add(carta);
+
+        pila.agregarCartas(cartas2);
+
+        assertEquals(carta,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDEVaciaAs(){
+        PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(carta,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDEVaciaNoAs(){
+        PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
+        Carta carta = new Carta(Palo.Corazones,Valor.Dos);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(null,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDEValido(){
+        PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+
+        pila.agregarCartas(cartas);
+
+        Carta carta2 = new Carta(Palo.Corazones,Valor.Dos);
+        ArrayList<Carta> cartas2=new ArrayList<Carta>();
+        cartas2.add(carta2);
+
+        pila.agregarCartas(cartas2);
+
+        assertEquals(carta2,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDENoValido(){
+        PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+
+        pila.agregarCartas(cartas);
+
+        Carta carta2 = new Carta(Palo.Diamantes,Valor.Dos);
+        ArrayList<Carta> cartas2=new ArrayList<Carta>();
+        cartas2.add(carta);
+
+        pila.agregarCartas(cartas2);
+
+        assertEquals(carta,pila.getUltimaCarta());
+    }
+
+
+
+
+
+
 
 }
