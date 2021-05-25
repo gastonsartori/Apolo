@@ -16,8 +16,8 @@ public class Mazo {
 
     public void crearMazo(){
 
-        Carta.Palo[] palos = Carta.Palo.values();
-        Carta.Valor[] valores = Carta.Valor.values();
+        Palo[] palos = Palo.values();
+        Valor[] valores = Valor.values();
 
         for (int i = 0; i < palos.length; i++) {
             for (int j = 0; j < valores.length; j++) {
@@ -30,19 +30,21 @@ public class Mazo {
         Collections.shuffle(mazo);
     }
 
-    public int getCartasRestantes() {
-        return cartasRestantes;
-    }
+    public int getCartasRestantes() { return mazo.size(); }
 
     public ArrayList<Carta> getMazo() {
         return mazo;
     }
 
     public Carta getUltimaCarta(){
+        if(mazo.isEmpty()){
+            return null;
+        }
         Carta ultima=mazo.get(cartasRestantes-1);
         //VER DE AGREGAR PARA SACAR ULTIMA
         return ultima;
     }
+
 
     public void quitarUltimaCarta(){
         mazo.remove(cartasRestantes-1);

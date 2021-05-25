@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 /**
  * Unit test for simple App.
  */
@@ -45,5 +47,28 @@ public class AppTest
         }
         assertEquals(true,mezclado);
     }
+
+    @Test
+    public void testAgregarPZDJVaciaK(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.K);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(carta,pila.getUltimaCarta());
+    }
+
+    @Test
+    public void testAgregarPZDJVaciaNoK(){
+        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
+        Carta carta = new Carta(Palo.Corazones,Valor.As);
+        ArrayList<Carta> cartas=new ArrayList<Carta>();
+        cartas.add(carta);
+        pila.agregarCartas(cartas);
+
+        assertEquals(null,pila.getUltimaCarta());
+    }
+
 
 }
