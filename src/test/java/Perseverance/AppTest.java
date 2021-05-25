@@ -49,7 +49,7 @@ public class AppTest
     }
 
     @Test
-    public void testAgregarCZDJVaciaK(){
+    public void testAgregarPZDJVaciaK(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.K);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
@@ -60,7 +60,7 @@ public class AppTest
     }
 
     @Test
-    public void testAgregarCZDJVaciaNoK(){
+    public void testAgregarPZDJVaciaNoK(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.As);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
@@ -69,33 +69,6 @@ public class AppTest
 
         assertEquals(null,pila.getUltimaCarta());
     }
-
-    @Test
-    public void testAgregarCZDJValido(){
-        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
-        Carta carta = new Carta(Palo.Corazones,Valor.Tres);
-        ArrayList<Carta> cartas=new ArrayList<Carta>();
-        cartas.add(carta);
-
-        pila.agregarCartas(cartas);
-
-        assertEquals(null,pila.getUltimaCarta());
-    }
-
-    @Test
-    public void testAgregarCZDJNoValido(){
-        PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
-        Carta carta = new Carta(Palo.Corazones,Valor.As);
-        ArrayList<Carta> cartas=new ArrayList<Carta>();
-        cartas.add(carta);
-        pila.agregarCartas(cartas);
-
-        assertEquals(null,pila.getUltimaCarta());
-    }
-
-
-
-
 
 
 }

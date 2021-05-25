@@ -9,8 +9,6 @@ public class Carta {
     private boolean visible;
     private ImageIcon imagen;
 
-
-
     public Carta(Palo palo, Valor valor){
         this.valor = valor;
         this.palo = palo;

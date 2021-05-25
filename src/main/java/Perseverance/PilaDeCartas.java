@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public abstract class PilaDeCartas{
     protected ArrayList<Carta> pila;
 
-
     public PilaDeCartas() {
         this.pila = new ArrayList<Carta>();
     }
@@ -13,7 +12,6 @@ public abstract class PilaDeCartas{
     public ArrayList<Carta> getPila() {
         return pila;
     }
-
     public int getCartasRestantes() { return pila.size(); }
 
     public Carta getUltimaCarta(){

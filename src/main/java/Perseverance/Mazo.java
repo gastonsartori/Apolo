@@ -30,9 +30,7 @@ public class Mazo {
         Collections.shuffle(mazo);
     }
 
-    public int getCartasRestantes() {
-        return cartasRestantes;
-    }
+    public int getCartasRestantes() { return mazo.size(); }
 
     public ArrayList<Carta> getMazo() {
         return mazo;
@@ -46,6 +44,7 @@ public class Mazo {
         //VER DE AGREGAR PARA SACAR ULTIMA
         return ultima;
     }
+
 
     public void quitarUltimaCarta(){
         mazo.remove(cartasRestantes-1);
