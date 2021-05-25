@@ -54,9 +54,9 @@ public class AppTest
         Carta carta = new Carta(Palo.Corazones,Valor.K);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
-        pila.agregarCartas(cartas);
 
-        assertEquals(carta,pila.getUltimaCarta());
+
+        assertEquals(true,pila.movimientoValido(cartas));
     }
 
     @Test
@@ -65,9 +65,9 @@ public class AppTest
         Carta carta = new Carta(Palo.Corazones,Valor.As);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
-        pila.agregarCartas(cartas);
 
-        assertEquals(null,pila.getUltimaCarta());
+
+        assertEquals(false,pila.movimientoValido(cartas));
     }
 
     @Test
@@ -83,9 +83,8 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta2);
 
-        pila.agregarCartas(cartas2);
 
-        assertEquals(carta2,pila.getUltimaCarta());
+        assertEquals(true,pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -101,9 +100,7 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta);
 
-        pila.agregarCartas(cartas2);
-
-        assertEquals(carta,pila.getUltimaCarta());
+        assertEquals(false,pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -112,9 +109,8 @@ public class AppTest
         Carta carta = new Carta(Palo.Corazones,Valor.As);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
-        pila.agregarCartas(cartas);
 
-        assertEquals(carta,pila.getUltimaCarta());
+        assertEquals(true,pila.movimientoValido(cartas));
     }
 
     @Test
@@ -123,9 +119,9 @@ public class AppTest
         Carta carta = new Carta(Palo.Corazones,Valor.Dos);
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
-        pila.agregarCartas(cartas);
 
-        assertEquals(null,pila.getUltimaCarta());
+
+        assertEquals(false,pila.movimientoValido(cartas));
     }
 
     @Test
@@ -141,9 +137,7 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta2);
 
-        pila.agregarCartas(cartas2);
-
-        assertEquals(carta2,pila.getUltimaCarta());
+        assertEquals(true,pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -159,9 +153,7 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta);
 
-        pila.agregarCartas(cartas2);
-
-        assertEquals(carta,pila.getUltimaCarta());
+        assertEquals(false,pila.movimientoValido(cartas2));
     }
 
 }
