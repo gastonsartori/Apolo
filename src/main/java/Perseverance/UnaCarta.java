@@ -1,4 +1,4 @@
 package Perseverance;
 
-public class UnaCarta {
+public class UnaCarta implements ModoDeJuego{
 }

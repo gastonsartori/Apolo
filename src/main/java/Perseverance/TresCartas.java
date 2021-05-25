@@ -1,4 +1,4 @@
 package Perseverance;
 
-public class TresCartas {
+public class TresCartas implements ModoDeJuego{
 }

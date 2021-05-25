@@ -1,4 +1,6 @@
 package Perseverance;
 
-public class VentanaConfig {
+import javax.swing.*;
+
+public class VentanaConfig extends JFrame {
 }

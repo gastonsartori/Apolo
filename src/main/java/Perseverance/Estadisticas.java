@@ -1,4 +1,6 @@
 package Perseverance;
 
-public class Estadisticas {
+import javax.swing.*;
+
+public class Estadisticas extends JFrame {
 }
