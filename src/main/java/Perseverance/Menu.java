@@ -82,7 +82,7 @@ public class Menu extends JFrame implements ActionListener {
         JButton boton = (JButton) e.getSource();
 
         if(boton.equals(jugar)){
-            //PANTALLA JUGAR
+            new VentanaConfig().crearVentana();
         }
         else if(boton.equals(reglas)){
             //PANTALLA REGLAS
@@ -94,16 +94,6 @@ public class Menu extends JFrame implements ActionListener {
             dispose();
         }
 
-    }
-
-    public void setearFuente(){
-        try {
-            this.fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font/TitilliumWeb.ttf"));
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void crearVentana(){
