@@ -10,7 +10,6 @@ public class Mazo {
     public Mazo() {
         this.mazo = new ArrayList<Carta>();
         this.crearMazo();
-        cartasRestantes=mazo.size();
         this.mezclar();
     }
 
@@ -26,6 +25,8 @@ public class Mazo {
         }
     }
 
+    public void setMazo(ArrayList<Carta> mazo) { this.mazo = mazo; }
+
     public void mezclar(){
         Collections.shuffle(mazo);
     }
@@ -40,13 +41,13 @@ public class Mazo {
         if(mazo.isEmpty()){
             return null;
         }
-        Carta ultima=mazo.get(cartasRestantes-1);
+        Carta ultima=mazo.get(getCartasRestantes()-1);
         //VER DE AGREGAR PARA SACAR ULTIMA
         return ultima;
     }
 
 
     public void quitarUltimaCarta(){
-        mazo.remove(cartasRestantes-1);
+       mazo.remove(getCartasRestantes() - 1);
     }
 }

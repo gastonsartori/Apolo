@@ -14,19 +14,31 @@ public class Juego implements Subject{
 
     private ArrayList<Observer> observers;
 
-    public Juego(ModoDeJuego modo){
+    public Juego(){
         mazo=new Mazo();
         mazo.mezclar();
         pilasJuego=new ArrayList<>();
         crearPilasDeJuego();
         pilasEscalera=new ArrayList<>();
         crearPilasDeEscalera();
-        modoDeJuego=modo;
+        modoDeJuego=new UnaCarta();
         puntaje=new Puntaje();
         cartasaUbicar=new ArrayList<>();
     }
 
+    public Mazo getMazo() { return mazo; }
 
+    public ArrayList<PilaEnZonaDeJuego> getPilasJuego() { return pilasJuego; }
+
+    public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
+
+    public Puntaje getPuntaje() { return puntaje; }
+
+    public ModoDeJuego getModoDeJuego() { return modoDeJuego; }
+
+    public ArrayList<Carta> getCartasaUbicar() { return cartasaUbicar; }
+
+    public ArrayList<Observer> getObservers() { return observers; }
 
     public void crearPilasDeJuego(){
         for (int i = 1; i < 8; i++) {
@@ -73,7 +85,8 @@ public class Juego implements Subject{
     }
 
     public void reiniciarMazo(){
-        for (int i = 0; i < cartasaUbicar.size(); i++) {
+        int cantidadDeCartas=cartasaUbicar.size();
+        for (int i = 0; i < cantidadDeCartas; i++) {
             mazo.getMazo().add(ubicarCarta());
             cartaUbicada();
         }
@@ -86,24 +99,27 @@ public class Juego implements Subject{
             pila.agregarCartas(cartas);
         }
         if(pila.getTipo().equals("escalera") && cartas.get(0).getValor() == Valor.K) {
-            comprobarWin();
+            if(comprobarWin()){
+                Win();
+            }
         }
     }
 
-    public void comprobarWin(){
+    public boolean comprobarWin(){
         int cont=0;
         for (int i = 0; i < 4; i++) {
-            if(pilasEscalera.get(i).getUltimaCarta().getValor() == Valor.K){
-                cont++;
+            if(!pilasEscalera.get(i).getPila().isEmpty()) {
+                if (pilasEscalera.get(i).getUltimaCarta().getValor() == Valor.K) {
+                    cont++;
+                }
             }
         }
-        if(cont == 4){
-            Win();
-        }
+        if(cont == 4) return true;
+        return false;
     }
 
     public void Win(){
-
+        System.out.println("ganaste prro");
     }
 
     public void setModoDeJuego(ModoDeJuego modoDeJuego) { this.modoDeJuego = modoDeJuego; }
