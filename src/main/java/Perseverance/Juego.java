@@ -11,6 +11,7 @@ public class Juego implements Subject{
     private Puntaje puntaje;
     private ModoDeJuego modoDeJuego;
     private ArrayList<Carta> cartasaUbicar;
+    private int movimientosaEscaleras;
 
     private ArrayList<Observer> observers;
 
@@ -24,6 +25,7 @@ public class Juego implements Subject{
         modoDeJuego=new UnaCarta();
         puntaje=new Puntaje();
         cartasaUbicar=new ArrayList<>();
+        movimientosaEscaleras=0;
     }
 
     public Mazo getMazo() { return mazo; }
@@ -33,6 +35,8 @@ public class Juego implements Subject{
     public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
 
     public Puntaje getPuntaje() { return puntaje; }
+
+    public int getMovimientosaEscaleras() { return movimientosaEscaleras; }
 
     public ModoDeJuego getModoDeJuego() { return modoDeJuego; }
 
@@ -97,10 +101,13 @@ public class Juego implements Subject{
     public void agregaraPila(ArrayList<Carta> cartas, PilaDeCartas pila){
         if(pila.movimientoValido(cartas)){
             pila.agregarCartas(cartas);
-        }
-        if(pila.getTipo().equals("escalera") && cartas.get(0).getValor() == Valor.K) {
-            if(comprobarWin()){
-                Win();
+            if(pila.getTipo().equals("escalera")) {
+                movimientosaEscaleras++;
+                if(cartas.get(0).getValor() == Valor.K){
+                    if(comprobarWin()){
+                        Win();
+                    }
+                }
             }
         }
     }
@@ -122,8 +129,23 @@ public class Juego implements Subject{
         System.out.println("ganaste prro");
     }
 
+    //strategy
     public void setModoDeJuego(ModoDeJuego modoDeJuego) { this.modoDeJuego = modoDeJuego; }
 
 
+    //observer
+
+    @Override
+    public void registerObserver(Observer observer) { observers.add(observer); }
+
+    @Override
+    public void unregisterObserver(Observer observer) { observers.remove(observer); }
+
+    @Override
+    public void notifyObservers() {
+        for (int i = 0; i < observers.size(); i++) {
+            observers.get(i).update();
+        }
+    }
 
 }

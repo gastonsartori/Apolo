@@ -1,7 +1,7 @@
 package Perseverance;
 
 public interface Subject {
-    //public void register(Observer observer);
-    //public void unregister(Observer observer);
-    //public void notificar();
+    public void registerObserver(Observer observer);
+    public void unregisterObserver(Observer observer);
+    public void notifyObservers();
 }
