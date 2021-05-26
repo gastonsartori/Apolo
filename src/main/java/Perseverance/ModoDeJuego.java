@@ -1,5 +1,7 @@
 package Perseverance;
 
+import java.util.ArrayList;
+
 public interface ModoDeJuego {
-    public int getCantidad();
+    public void pedirCarta(Mazo mazo, ArrayList<Carta> cartasaUbicar);
 }

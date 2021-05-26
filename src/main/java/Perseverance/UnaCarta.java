@@ -1,13 +1,14 @@
 package Perseverance;
 
+import java.util.ArrayList;
+
 public class UnaCarta implements ModoDeJuego{
 
-    private int cantidad;
-
-    public UnaCarta() {
-        this.cantidad = 1;
+    public void pedirCarta(Mazo mazo, ArrayList<Carta> cartasaUbicar){
+        if (!mazo.getMazo().isEmpty()) {
+            cartasaUbicar.add(mazo.getUltimaCarta());
+            mazo.quitarUltimaCarta();
+        }
     }
-
-    public int getCantidad() { return cantidad; }
 
 }

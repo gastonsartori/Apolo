@@ -78,12 +78,7 @@ public class Juego implements Subject{
             reiniciarMazo();
         }
         else {
-            for (int i = 0; i < modoDeJuego.getCantidad(); i++) {
-                if (!mazo.getMazo().isEmpty()) {
-                    cartasaUbicar.add(mazo.getUltimaCarta());
-                    mazo.quitarUltimaCarta();
-                }
-            }
+            modoDeJuego.pedirCarta(mazo, cartasaUbicar);
         }
     }
 
