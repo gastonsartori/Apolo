@@ -2,8 +2,12 @@ package Perseverance;
 
 public class UnaCarta implements ModoDeJuego{
 
-    public int cantidad() {
-        return 1;
+    private int cantidad;
+
+    public UnaCarta() {
+        this.cantidad = 1;
     }
+
+    public int getCantidad() { return cantidad; }
 
 }

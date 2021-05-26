@@ -5,7 +5,6 @@ import java.util.Collections;
 
 public class Mazo {
     private ArrayList<Carta> mazo;
-    private int cartasRestantes;
 
     public Mazo() {
         this.mazo = new ArrayList<Carta>();

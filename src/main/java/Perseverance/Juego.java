@@ -8,10 +8,11 @@ public class Juego implements Subject{
     private Mazo mazo;
     private ArrayList<PilaEnZonaDeJuego> pilasJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasEscalera;
-    private Puntaje puntaje;
+    private int puntaje;
     private ModoDeJuego modoDeJuego;
     private ArrayList<Carta> cartasaUbicar;
     private int movimientosaEscaleras;
+    private int movimientosExitosos;
 
     private ArrayList<Observer> observers;
 
@@ -23,18 +24,22 @@ public class Juego implements Subject{
         pilasEscalera=new ArrayList<>();
         crearPilasDeEscalera();
         modoDeJuego=new UnaCarta();
-        puntaje=new Puntaje();
+        puntaje=0;
         cartasaUbicar=new ArrayList<>();
         movimientosaEscaleras=0;
+        movimientosExitosos=0;
     }
 
+    //GETTERS
     public Mazo getMazo() { return mazo; }
 
     public ArrayList<PilaEnZonaDeJuego> getPilasJuego() { return pilasJuego; }
 
     public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
 
-    public Puntaje getPuntaje() { return puntaje; }
+    public int getPuntaje() { return puntaje; }
+
+    public int getMovimientosExitosos() { return movimientosExitosos; }
 
     public int getMovimientosaEscaleras() { return movimientosaEscaleras; }
 
@@ -43,6 +48,8 @@ public class Juego implements Subject{
     public ArrayList<Carta> getCartasaUbicar() { return cartasaUbicar; }
 
     public ArrayList<Observer> getObservers() { return observers; }
+
+    //
 
     public void crearPilasDeJuego(){
         for (int i = 1; i < 8; i++) {
@@ -71,7 +78,7 @@ public class Juego implements Subject{
             reiniciarMazo();
         }
         else {
-            for (int i = 0; i < modoDeJuego.cantidad(); i++) {
+            for (int i = 0; i < modoDeJuego.getCantidad(); i++) {
                 if (!mazo.getMazo().isEmpty()) {
                     cartasaUbicar.add(mazo.getUltimaCarta());
                     mazo.quitarUltimaCarta();
@@ -101,11 +108,13 @@ public class Juego implements Subject{
     public void agregaraPila(ArrayList<Carta> cartas, PilaDeCartas pila){
         if(pila.movimientoValido(cartas)){
             pila.agregarCartas(cartas);
+            movimientosExitosos++;
             if(pila.getTipo().equals("escalera")) {
                 movimientosaEscaleras++;
+                actPuntaje();
                 if(cartas.get(0).getValor() == Valor.K){
                     if(comprobarWin()){
-                        Win();
+                        win();
                     }
                 }
             }
@@ -125,9 +134,11 @@ public class Juego implements Subject{
         return false;
     }
 
-    public void Win(){
+    public void win(){
         System.out.println("ganaste prro");
     }
+
+    public void actPuntaje(){ puntaje=movimientosaEscaleras*10;}
 
     //strategy
     public void setModoDeJuego(ModoDeJuego modoDeJuego) { this.modoDeJuego = modoDeJuego; }
