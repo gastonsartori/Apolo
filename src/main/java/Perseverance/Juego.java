@@ -17,13 +17,13 @@ public class Juego implements Subject{
     public Juego(ModoDeJuego modo){
         mazo=new Mazo();
         mazo.mezclar();
-        pilasJuego=new ArrayList<PilaEnZonaDeJuego>();
+        pilasJuego=new ArrayList<>();
         crearPilasDeJuego();
-        pilasEscalera=new ArrayList<PilaEnZonaDeEscalera>();
+        pilasEscalera=new ArrayList<>();
         crearPilasDeEscalera();
         modoDeJuego=modo;
         puntaje=new Puntaje();
-        cartasaUbicar=new ArrayList<Carta>();
+        cartasaUbicar=new ArrayList<>();
     }
 
 
@@ -31,7 +31,7 @@ public class Juego implements Subject{
     public void crearPilasDeJuego(){
         for (int i = 1; i < 8; i++) {
             PilaEnZonaDeJuego pila=new PilaEnZonaDeJuego();
-            ArrayList<Carta> cartas= new ArrayList<Carta>();
+            ArrayList<Carta> cartas= new ArrayList<>();
             for (int j = 0; j < i; j++) {
                 cartas.add(mazo.getUltimaCarta());
                 mazo.quitarUltimaCarta();
@@ -85,7 +85,7 @@ public class Juego implements Subject{
         if(pila.movimientoValido(cartas)){
             pila.agregarCartas(cartas);
         }
-        if(pila.getTipo()=="escalera" && cartas.get(0).getValor() == Valor.K) {
+        if(pila.getTipo().equals("escalera") && cartas.get(0).getValor() == Valor.K) {
             comprobarWin();
         }
     }

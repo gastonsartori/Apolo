@@ -45,7 +45,7 @@ public class AppTest
         if(coincidencias<5){
             mezclado=true;
         }
-        assertEquals(true,mezclado);
+        assertTrue(mezclado);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AppTest
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
 
-        assertEquals(true,pila.movimientoValido(cartas));
+        assertTrue(pila.movimientoValido(cartas));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AppTest
         cartas.add(carta);
 
 
-        assertEquals(false,pila.movimientoValido(cartas));
+        assertFalse(pila.movimientoValido(cartas));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AppTest
         cartas2.add(carta2);
 
 
-        assertEquals(true,pila.movimientoValido(cartas2));
+        assertTrue(pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta);
 
-        assertEquals(false,pila.movimientoValido(cartas2));
+        assertFalse(pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class AppTest
         ArrayList<Carta> cartas=new ArrayList<Carta>();
         cartas.add(carta);
 
-        assertEquals(true,pila.movimientoValido(cartas));
+        assertTrue(pila.movimientoValido(cartas));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AppTest
         cartas.add(carta);
 
 
-        assertEquals(false,pila.movimientoValido(cartas));
+        assertFalse(pila.movimientoValido(cartas));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta2);
 
-        assertEquals(true,pila.movimientoValido(cartas2));
+        assertTrue(pila.movimientoValido(cartas2));
     }
 
     @Test
@@ -152,8 +152,10 @@ public class AppTest
         ArrayList<Carta> cartas2=new ArrayList<Carta>();
         cartas2.add(carta);
 
-        assertEquals(false,pila.movimientoValido(cartas2));
+        assertFalse(pila.movimientoValido(cartas2));
     }
+
+
 
 
 }
