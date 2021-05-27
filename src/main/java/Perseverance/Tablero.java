@@ -2,17 +2,23 @@ package Perseverance;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tablero extends JFrame implements Observer {
+public class Tablero extends JFrame implements Observer{
 
     private JButton nuevoJuego;
     private JButton menuPrincipal;
-    private JButton Reglas;
-    private JButton Estadisticas;
+    private JButton reglas;
+    private JButton estadisticas;
+    private JButton unaCarta;
+    private JButton tresCartas;
+
     private ArrayList<JButton> cartasDeJuego;
     private ArrayList<JButton> cartasDeEscalera;
     private Font fuente;
+
     private JLabel tablero;
     private JLabel nombre;
     private JLabel jugador;
@@ -35,7 +41,7 @@ public class Tablero extends JFrame implements Observer {
     public Tablero(Juego juego){
 
         this.juego=juego;
-
+        registrarFuente();
         update();
 
         setLayout(null);
@@ -43,7 +49,7 @@ public class Tablero extends JFrame implements Observer {
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
-        fuente = new Font("font/TitilliumWeb.ttf", Font.TRUETYPE_FONT, 20);
+
 
         ImageIcon tableropng = new ImageIcon("images/tablero.png");
         tablero = new JLabel(tableropng);
@@ -75,19 +81,61 @@ public class Tablero extends JFrame implements Observer {
         add(puntuacion);
 
         jugador= new JLabel(nombreJugador);
-        jugador.setBounds(150,0,200, 30);
+        jugador.setBounds(100,0,200, 30);
         jugador.setForeground(new Color(0,0,0));
         jugador.setFont(fuente);
         add(jugador);
 
+        nuevoJuego = new JButton("Nuevo Juego");
+        nuevoJuego.setBounds(750, 10,150,35);
+        nuevoJuego.setFont(fuente);
+        nuevoJuego.setBackground(new Color(230,230,230));
+        nuevoJuego.setFocusPainted(false);
+        nuevoJuego.setName("nuevoJuegoTablero");
+        add(nuevoJuego);
+
+        menuPrincipal = new JButton("Menu");
+        menuPrincipal.setBounds(920, 10,150,35);
+        menuPrincipal.setFont(fuente);
+        menuPrincipal.setBackground(new Color(230,230,230));
+        menuPrincipal.setFocusPainted(false);
+        menuPrincipal.setName("menuPrincipalTablero");
+        add(menuPrincipal);
+
+        reglas = new JButton("Reglas");
+        reglas.setBounds(750, 52,150,35);
+        reglas.setFont(fuente);
+        reglas.setBackground(new Color(230,230,230));
+        reglas.setFocusPainted(false);
+        reglas.setName("reglasTablero");
+        add(reglas);
+
+        estadisticas = new JButton("Estadisticas");
+        estadisticas.setBounds(920, 52,150,35);
+        estadisticas.setFont(fuente);
+        estadisticas.setBackground(new Color(230,230,230));
+        estadisticas.setFocusPainted(false);
+        estadisticas.setName("estadisticasTablero");
+        add(estadisticas);
+
+        unaCarta = new JButton("Una carta");
+        unaCarta.setBounds(1090, 10,150,35);
+        unaCarta.setFont(fuente);
+        unaCarta.setBackground(new Color(230,230,230));
+        unaCarta.setFocusPainted(false);
+        unaCarta.setName("unaCartaTablero");
+        add(unaCarta);
+
+        tresCartas = new JButton("Tres cartas");
+        tresCartas.setBounds(1090, 52,150,35);
+        tresCartas.setFont(fuente);
+        tresCartas.setBackground(new Color(230,230,230));
+        tresCartas.setFocusPainted(false);
+        tresCartas.setName("tresCartasTablero");
+        add(tresCartas);
 
 
         add(tablero);
-
-
-
-
-
 
     }
 
@@ -113,5 +161,17 @@ public class Tablero extends JFrame implements Observer {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+    }
+
+    public void registrarFuente(){
+        try {
+            //create the font to use. Specify the size!
+            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(fuente);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 }

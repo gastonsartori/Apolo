@@ -24,7 +24,8 @@ public class Menu extends JFrame implements ActionListener {
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
-        fuente = new Font("font/TitilliumWeb.ttf", Font.TRUETYPE_FONT, 20);
+
+        registrarFuente();
 
         jugar = new JButton("Jugar");
         jugar.setHorizontalTextPosition(jugar.CENTER);
@@ -70,8 +71,7 @@ public class Menu extends JFrame implements ActionListener {
         fondo = new JLabel(fondopng);
         fondo.setBounds(0,0,1280,720);
         add(fondo);
-
-
+        System.out.println(fuente.getFontName());
     }
 
 
@@ -102,5 +102,18 @@ public class Menu extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
+    }
+    public void registrarFuente(){
+        try {
+            //create the font to use. Specify the size!
+            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(fuente);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 }

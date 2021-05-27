@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class VentanaConfig extends JFrame implements ActionListener {
     private Menu menuPrincipal;
@@ -16,22 +18,27 @@ public class VentanaConfig extends JFrame implements ActionListener {
     private JLabel nombreText;
     private JButton aceptar;
     private JButton atras;
+    private Font fuente;
 
 
     public VentanaConfig(Menu menu){
 
-        menuPrincipal=menu;
+        menuPrincipal = menu;
 
         setLayout(null);
         setResizable(false);
         setTitle("Jugar");
 
+        registrarFuente();
+
         nombre = new JTextField();
         nombre.setBounds(150,30,250,25);
+        nombre.setFont(fuente);
         add(nombre);
 
         nombreText = new JLabel("Nombre:");
-        nombreText.setBounds(70,27,50,25);
+        nombreText.setBounds(60,27,65,25);
+        nombreText.setFont(fuente);
         add(nombreText);
 
         unaCarta = new JRadioButton();
@@ -41,8 +48,12 @@ public class VentanaConfig extends JFrame implements ActionListener {
         tresCartasText = new JLabel("Tres cartas");
         unaCarta.setBounds(70, 100, 20, 20);
         tresCartas.setBounds(70,125,20,20);
-        unaCartaText.setBounds(95,98,60,25);
-        tresCartasText.setBounds(95,123,80,25);
+        unaCartaText.setBounds(95,98,80,25);
+        tresCartasText.setBounds(95,123,100,25);
+        unaCarta.setFont(fuente);
+        tresCartas.setFont(fuente);
+        unaCartaText.setFont(fuente);
+        tresCartasText.setFont(fuente);
 
         modoJuego.add(unaCarta);
         modoJuego.add(tresCartas);
@@ -53,14 +64,16 @@ public class VentanaConfig extends JFrame implements ActionListener {
 
         aceptar = new JButton("Aceptar");
         aceptar.addActionListener(this);
-        aceptar.setBounds(200,230,90,30);
+        aceptar.setBounds(110,230,110,30);
         aceptar.setBackground(new Color(230,230,230));
+        aceptar.setFont(fuente);
         add(aceptar);
 
         atras = new JButton("Atras");
         atras.addActionListener(this);
-        atras.setBounds(300,230,90,30);
+        atras.setBounds(290,230,110,30);
         atras.setBackground(new Color(230,230,230));
+        atras.setFont(fuente);
         add(atras);
 
     }
@@ -85,5 +98,18 @@ public class VentanaConfig extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+    }
+    public void registrarFuente(){
+        try {
+            //create the font to use. Specify the size!
+            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(fuente);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 }
