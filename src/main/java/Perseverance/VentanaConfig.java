@@ -71,7 +71,7 @@ public class VentanaConfig extends JFrame implements ActionListener {
 
         if(boton.equals(aceptar)){
             //ACEPTAR
-            new Controlador(nombreText.getText());
+            new Controlador(nombre.getText());
             menuPrincipal.dispose();
             dispose();
         }

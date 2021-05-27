@@ -10,7 +10,7 @@ public class Controlador implements ActionListener {
 
     public Controlador(String nombre) {
         this.juego = new Juego(nombre);
-        this.tablero = new Tablero();
+        this.tablero = new Tablero(juego);
         tablero.crearVentana();
     }
 

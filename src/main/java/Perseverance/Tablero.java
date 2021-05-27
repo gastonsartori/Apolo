@@ -14,6 +14,12 @@ public class Tablero extends JFrame implements Observer {
     private ArrayList<JButton> cartasDeEscalera;
     private Font fuente;
     private JLabel tablero;
+    private JLabel nombre;
+    private JLabel jugador;
+    private JLabel tiempo;
+    private JLabel movimientos;
+    private JLabel puntuacion;
+
 
     private ArrayList<PilaEnZonaDeJuego> pilasDeJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasDeEscalera;
@@ -21,10 +27,17 @@ public class Tablero extends JFrame implements Observer {
     private boolean mazoVacio;
     private int puntaje;
     private int movimientosExitosos;
+    private String nombreJugador;
+
 
     private Juego juego;
 
-    public Tablero(){
+    public Tablero(Juego juego){
+
+        this.juego=juego;
+
+        update();
+
         setLayout(null);
         setTitle("Solitario Apolo");
         ImageIcon icono = new ImageIcon("images/icono.png");
@@ -35,7 +48,42 @@ public class Tablero extends JFrame implements Observer {
         ImageIcon tableropng = new ImageIcon("images/tablero.png");
         tablero = new JLabel(tableropng);
         tablero.setBounds(0,0,1280,720);
+
+
+        nombre= new JLabel("Nombre: ");
+        nombre.setBounds(10,0,200, 30);
+        nombre.setForeground(new Color(0,0,0));
+        nombre.setFont(fuente);
+        add(nombre);
+
+        tiempo= new JLabel("Tiempo: ");
+        tiempo.setBounds(10,30,200, 30);
+        tiempo.setForeground(new Color(0,0,0));
+        tiempo.setFont(fuente);
+        add(tiempo);
+
+        movimientos= new JLabel("Movimientos Exitosos: ");
+        movimientos.setBounds(10,60,400, 30);
+        movimientos.setForeground(new Color(0,0,0));
+        movimientos.setFont(fuente);
+        add(movimientos);
+
+        puntuacion= new JLabel("Puntuación: ");
+        puntuacion.setBounds(410,60,200, 30);
+        puntuacion.setForeground(new Color(0,0,0));
+        puntuacion.setFont(fuente);
+        add(puntuacion);
+
+        jugador= new JLabel(nombreJugador);
+        jugador.setBounds(150,0,200, 30);
+        jugador.setForeground(new Color(0,0,0));
+        jugador.setFont(fuente);
+        add(jugador);
+
+
+
         add(tablero);
+
 
 
 
@@ -51,6 +99,8 @@ public class Tablero extends JFrame implements Observer {
         mazoVacio=juego.getMazoVacio();
         puntaje=juego.getPuntaje();
         movimientosExitosos=juego.getMovimientosExitosos();
+        nombreJugador=juego.getNombre();
+
         recargar();
     }
 

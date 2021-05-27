@@ -53,6 +53,8 @@ public class Juego implements Subject{
 
     public boolean getMazoVacio(){return mazo.getMazo().isEmpty();}
 
+    public String getNombre() { return nombre; }
+
     //
 
     public void crearPilasDeJuego(){
