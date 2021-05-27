@@ -22,7 +22,7 @@ public class Tablero extends JFrame implements Observer{
     private ArrayList<JButton> pilaDeJuego5;
     private ArrayList<JButton> pilaDeJuego6;
     private ArrayList<JButton> pilaDeJuego7;
-    private ArrayList<JButton> cartasDeEscalera;
+    private ArrayList<JButton> escaleras;
     private JButton mazo;
     private JButton cartaUbicar;
     private Font fuente;
@@ -52,7 +52,7 @@ public class Tablero extends JFrame implements Observer{
         this.juego=juego;
         registrarFuente();
         update();
-
+        escaleras = new ArrayList<>();
         setLayout(null);
         setTitle("Solitario Apolo");
         ImageIcon icono = new ImageIcon("images/icono.png");
@@ -164,6 +164,17 @@ public class Tablero extends JFrame implements Observer{
         mazo.setName("mazoTablero");
         mazo.addActionListener(controlador);
         add(mazo);
+
+        for (int i = 0; i < 4; i++) {
+            JButton boton = new JButton();
+            boton.setBounds(590+(168*i),108,98,117);
+            boton.setIcon(new ImageIcon("images/reversocarta.png"));
+            boton.setFocusPainted(false);
+            boton.setName("escalera" + i);
+            boton.addActionListener(controlador);
+            add(boton);
+            escaleras.add(boton);
+        }
 
 
         add(tablero);
