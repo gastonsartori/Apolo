@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class VentanaConfig extends JFrame implements ActionListener {
-    private Menu menuPrincipal;
+    private JFrame menuPrincipal;
     private JRadioButton unaCarta;
     private JRadioButton tresCartas;
     private ButtonGroup modoJuego;
@@ -21,7 +21,7 @@ public class VentanaConfig extends JFrame implements ActionListener {
     private Font fuente;
 
 
-    public VentanaConfig(Menu menu){
+    public VentanaConfig(JFrame menu){
 
         menuPrincipal = menu;
 
@@ -84,7 +84,13 @@ public class VentanaConfig extends JFrame implements ActionListener {
 
         if(boton.equals(aceptar)){
             //ACEPTAR
-            new Controlador(nombre.getText());
+            if(unaCarta.isSelected()){
+                new Controlador(nombre.getText()).setearModoUnaCarta();
+            }
+            if(tresCartas.isSelected()){
+                new Controlador(nombre.getText()).setearModoTresCartas();
+            }
+
             menuPrincipal.dispose();
             dispose();
         }

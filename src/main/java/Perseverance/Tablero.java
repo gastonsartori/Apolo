@@ -26,7 +26,6 @@ public class Tablero extends JFrame implements Observer{
     private JLabel movimientos;
     private JLabel puntuacion;
 
-
     private ArrayList<PilaEnZonaDeJuego> pilasDeJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasDeEscalera;
     private ArrayList<Carta> cartasaUbicar;
@@ -34,12 +33,14 @@ public class Tablero extends JFrame implements Observer{
     private int puntaje;
     private int movimientosExitosos;
     private String nombreJugador;
-
+    private ModoDeJuego modoDeJuego;
 
     private Juego juego;
+    private Controlador controlador;
 
-    public Tablero(Juego juego){
+    public Tablero(Juego juego, Controlador controlador){
 
+        this.controlador=controlador;
         this.juego=juego;
         registrarFuente();
         update();
@@ -92,6 +93,7 @@ public class Tablero extends JFrame implements Observer{
         nuevoJuego.setBackground(new Color(230,230,230));
         nuevoJuego.setFocusPainted(false);
         nuevoJuego.setName("nuevoJuegoTablero");
+        nuevoJuego.addActionListener(controlador);
         add(nuevoJuego);
 
         menuPrincipal = new JButton("Menu");
@@ -100,6 +102,7 @@ public class Tablero extends JFrame implements Observer{
         menuPrincipal.setBackground(new Color(230,230,230));
         menuPrincipal.setFocusPainted(false);
         menuPrincipal.setName("menuPrincipalTablero");
+        menuPrincipal.addActionListener(controlador);
         add(menuPrincipal);
 
         reglas = new JButton("Reglas");
@@ -108,6 +111,7 @@ public class Tablero extends JFrame implements Observer{
         reglas.setBackground(new Color(230,230,230));
         reglas.setFocusPainted(false);
         reglas.setName("reglasTablero");
+        reglas.addActionListener(controlador);
         add(reglas);
 
         estadisticas = new JButton("Estadisticas");
@@ -116,22 +120,33 @@ public class Tablero extends JFrame implements Observer{
         estadisticas.setBackground(new Color(230,230,230));
         estadisticas.setFocusPainted(false);
         estadisticas.setName("estadisticasTablero");
+        estadisticas.addActionListener(controlador);
         add(estadisticas);
 
         unaCarta = new JButton("Una carta");
         unaCarta.setBounds(1090, 10,150,35);
         unaCarta.setFont(fuente);
-        unaCarta.setBackground(new Color(230,230,230));
+        if(modoDeJuego.getModo().equals("unaCarta")){
+            unaCarta.setBackground(new Color(235,113,113));
+        }else{
+            unaCarta.setBackground(new Color(230,230,230));
+        }
         unaCarta.setFocusPainted(false);
         unaCarta.setName("unaCartaTablero");
+        unaCarta.addActionListener(controlador);
         add(unaCarta);
 
         tresCartas = new JButton("Tres cartas");
         tresCartas.setBounds(1090, 52,150,35);
         tresCartas.setFont(fuente);
-        tresCartas.setBackground(new Color(230,230,230));
+        if(modoDeJuego.getModo().equals("tresCartas")){
+            tresCartas.setBackground(new Color(235,113,113));
+        }else{
+            tresCartas.setBackground(new Color(230,230,230));
+        }
         tresCartas.setFocusPainted(false);
         tresCartas.setName("tresCartasTablero");
+        tresCartas.addActionListener(controlador);
         add(tresCartas);
 
 
@@ -148,11 +163,14 @@ public class Tablero extends JFrame implements Observer{
         puntaje=juego.getPuntacion();
         movimientosExitosos=juego.getMovimientosExitosos();
         nombreJugador=juego.getNombre();
+        modoDeJuego=juego.getModoDeJuego();
 
-        recargar();
+        recargarVentana();
     }
 
-    public void recargar(){
+    public void recargarVentana(){
+
+        recargarBotonesModo();
 
     }
 
@@ -165,13 +183,26 @@ public class Tablero extends JFrame implements Observer{
 
     public void registrarFuente(){
         try {
-            //create the font to use. Specify the size!
             fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
             ge.registerFont(fuente);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void recargarBotonesModo(){
+        if(!(unaCarta == null || tresCartas == null)) {
+            if (modoDeJuego.getModo().equals("unaCarta")) {
+                unaCarta.setBackground(new Color(235, 113, 113));
+            } else {
+                unaCarta.setBackground(new Color(230, 230, 230));
+            }
+            if (modoDeJuego.getModo().equals("tresCartas")) {
+                tresCartas.setBackground(new Color(235, 113, 113));
+            } else {
+                tresCartas.setBackground(new Color(230, 230, 230));
+            }
         }
     }
 }

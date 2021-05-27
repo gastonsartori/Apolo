@@ -32,6 +32,7 @@ public class Juego implements Subject{
         this.nombre=nombre;
         bonificacionDeTiempo=1000;
         actPuntacion();
+        observers=new ArrayList<>();
     }
 
     //GETTERS
@@ -144,13 +145,17 @@ public class Juego implements Subject{
     public void actPuntacion(){ puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;}
 
     //strategy
-    public void setModoDeJuego(ModoDeJuego modoDeJuego) { this.modoDeJuego = modoDeJuego; }
+    public void setModoDeJuego(ModoDeJuego modoDeJuego) {
+        this.modoDeJuego = modoDeJuego;
+        notifyObservers();
+    }
 
 
     //observer
 
     @Override
-    public void registerObserver(Observer observer) { observers.add(observer); }
+    public void registerObserver(Observer observer) { observers.add(observer);
+        System.out.println("añadi observer");}
 
     @Override
     public void unregisterObserver(Observer observer) { observers.remove(observer); }
