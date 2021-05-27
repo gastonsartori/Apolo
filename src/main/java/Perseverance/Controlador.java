@@ -41,7 +41,7 @@ public class Controlador implements ActionListener {
             }
         }
         else if(boton.getName().equals("reglasTablero")){
-
+            new Reglas().crearVentana();
         }
         else if(boton.getName().equals("estadisticasTablero")){
         }
