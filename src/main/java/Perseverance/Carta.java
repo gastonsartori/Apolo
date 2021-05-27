@@ -13,7 +13,7 @@ public class Carta {
         this.valor = valor;
         this.palo = palo;
         this.visible=false;
-        imagen = new ImageIcon("images/BocaAbajo.png");
+        imagen = new ImageIcon("images/reversocarta.png");
     }
 
     public Valor getValor() { return valor; }

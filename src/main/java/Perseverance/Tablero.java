@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tablero extends JFrame implements Observer{
+public class Tablero extends JFrame implements Observer {
 
     private JButton nuevoJuego;
     private JButton menuPrincipal;
@@ -46,13 +46,13 @@ public class Tablero extends JFrame implements Observer{
     private Juego juego;
     private Controlador controlador;
 
-    public Tablero(Juego juego, Controlador controlador){
+    public Tablero(Juego juego, Controlador controlador) {
 
-        this.controlador=controlador;
-        this.juego=juego;
+        this.controlador = controlador;
+        this.juego = juego;
         registrarFuente();
-        update();
         escaleras = new ArrayList<>();
+        update();
         setLayout(null);
         setTitle("Solitario Apolo");
         ImageIcon icono = new ImageIcon("images/icono.png");
@@ -62,82 +62,82 @@ public class Tablero extends JFrame implements Observer{
 
         ImageIcon tableropng = new ImageIcon("images/tablero.png");
         tablero = new JLabel(tableropng);
-        tablero.setBounds(0,0,1280,720);
+        tablero.setBounds(0, 0, 1280, 720);
 
 
-        nombre= new JLabel("Nombre: ");
-        nombre.setBounds(10,0,200, 30);
-        nombre.setForeground(new Color(0,0,0));
+        nombre = new JLabel("Nombre: ");
+        nombre.setBounds(10, 0, 200, 30);
+        nombre.setForeground(new Color(0, 0, 0));
         nombre.setFont(fuente);
         add(nombre);
 
-        tiempo= new JLabel("Tiempo: ");
-        tiempo.setBounds(10,30,200, 30);
-        tiempo.setForeground(new Color(0,0,0));
+        tiempo = new JLabel("Tiempo: ");
+        tiempo.setBounds(10, 30, 200, 30);
+        tiempo.setForeground(new Color(0, 0, 0));
         tiempo.setFont(fuente);
         add(tiempo);
 
-        movimientos= new JLabel("Movimientos Exitosos: ");
-        movimientos.setBounds(10,60,400, 30);
-        movimientos.setForeground(new Color(0,0,0));
+        movimientos = new JLabel("Movimientos Exitosos: ");
+        movimientos.setBounds(10, 60, 400, 30);
+        movimientos.setForeground(new Color(0, 0, 0));
         movimientos.setFont(fuente);
         add(movimientos);
 
-        puntuacion= new JLabel("Puntuación: ");
-        puntuacion.setBounds(410,60,200, 30);
-        puntuacion.setForeground(new Color(0,0,0));
+        puntuacion = new JLabel("Puntuación: ");
+        puntuacion.setBounds(410, 60, 200, 30);
+        puntuacion.setForeground(new Color(0, 0, 0));
         puntuacion.setFont(fuente);
         add(puntuacion);
 
-        jugador= new JLabel(nombreJugador);
-        jugador.setBounds(100,0,200, 30);
-        jugador.setForeground(new Color(0,0,0));
+        jugador = new JLabel(nombreJugador);
+        jugador.setBounds(100, 0, 200, 30);
+        jugador.setForeground(new Color(0, 0, 0));
         jugador.setFont(fuente);
         add(jugador);
 
         nuevoJuego = new JButton("Nuevo Juego");
-        nuevoJuego.setBounds(750, 10,150,35);
+        nuevoJuego.setBounds(750, 10, 150, 35);
         nuevoJuego.setFont(fuente);
-        nuevoJuego.setBackground(new Color(230,230,230));
+        nuevoJuego.setBackground(new Color(230, 230, 230));
         nuevoJuego.setFocusPainted(false);
         nuevoJuego.setName("nuevoJuegoTablero");
         nuevoJuego.addActionListener(controlador);
         add(nuevoJuego);
 
         menuPrincipal = new JButton("Menu");
-        menuPrincipal.setBounds(920, 10,150,35);
+        menuPrincipal.setBounds(920, 10, 150, 35);
         menuPrincipal.setFont(fuente);
-        menuPrincipal.setBackground(new Color(230,230,230));
+        menuPrincipal.setBackground(new Color(230, 230, 230));
         menuPrincipal.setFocusPainted(false);
         menuPrincipal.setName("menuPrincipalTablero");
         menuPrincipal.addActionListener(controlador);
         add(menuPrincipal);
 
         reglas = new JButton("Reglas");
-        reglas.setBounds(750, 52,150,35);
+        reglas.setBounds(750, 52, 150, 35);
         reglas.setFont(fuente);
-        reglas.setBackground(new Color(230,230,230));
+        reglas.setBackground(new Color(230, 230, 230));
         reglas.setFocusPainted(false);
         reglas.setName("reglasTablero");
         reglas.addActionListener(controlador);
         add(reglas);
 
         estadisticas = new JButton("Estadisticas");
-        estadisticas.setBounds(920, 52,150,35);
+        estadisticas.setBounds(920, 52, 150, 35);
         estadisticas.setFont(fuente);
-        estadisticas.setBackground(new Color(230,230,230));
+        estadisticas.setBackground(new Color(230, 230, 230));
         estadisticas.setFocusPainted(false);
         estadisticas.setName("estadisticasTablero");
         estadisticas.addActionListener(controlador);
         add(estadisticas);
 
         unaCarta = new JButton("Una carta");
-        unaCarta.setBounds(1090, 10,150,35);
+        unaCarta.setBounds(1090, 10, 150, 35);
         unaCarta.setFont(fuente);
-        if(modoDeJuego.getModo().equals("unaCarta")){
-            unaCarta.setBackground(new Color(235,113,113));
-        }else{
-            unaCarta.setBackground(new Color(230,230,230));
+        if (modoDeJuego.getModo().equals("unaCarta")) {
+            unaCarta.setBackground(new Color(235, 113, 113));
+        } else {
+            unaCarta.setBackground(new Color(230, 230, 230));
         }
         unaCarta.setFocusPainted(false);
         unaCarta.setName("unaCartaTablero");
@@ -145,12 +145,12 @@ public class Tablero extends JFrame implements Observer{
         add(unaCarta);
 
         tresCartas = new JButton("Tres cartas");
-        tresCartas.setBounds(1090, 52,150,35);
+        tresCartas.setBounds(1090, 52, 150, 35);
         tresCartas.setFont(fuente);
-        if(modoDeJuego.getModo().equals("tresCartas")){
-            tresCartas.setBackground(new Color(235,113,113));
-        }else{
-            tresCartas.setBackground(new Color(230,230,230));
+        if (modoDeJuego.getModo().equals("tresCartas")) {
+            tresCartas.setBackground(new Color(235, 113, 113));
+        } else {
+            tresCartas.setBackground(new Color(230, 230, 230));
         }
         tresCartas.setFocusPainted(false);
         tresCartas.setName("tresCartasTablero");
@@ -167,7 +167,7 @@ public class Tablero extends JFrame implements Observer{
 
         for (int i = 0; i < 4; i++) {
             JButton boton = new JButton();
-            boton.setBounds(590+(168*i),108,98,117);
+            boton.setBounds(590 + (168 * i), 108, 98, 117);
             boton.setIcon(new ImageIcon("images/reversocarta.png"));
             boton.setFocusPainted(false);
             boton.setName("escalera" + i);
@@ -179,40 +179,41 @@ public class Tablero extends JFrame implements Observer{
 
         add(tablero);
 
-        recargarCartas();
+        recargarMazo();
+        recargarEscalera();
 
     }
 
     @Override
-    public void update(){
-        pilasDeJuego=juego.getPilasJuego();
-        pilasDeEscalera=juego.getPilasEscalera();
-        cartasaUbicar= juego.getCartasaUbicar();
-        mazoVacio=juego.getMazoVacio();
-        puntaje=juego.getPuntacion();
-        movimientosExitosos=juego.getMovimientosExitosos();
-        nombreJugador=juego.getNombre();
-        modoDeJuego=juego.getModoDeJuego();
+    public void update() {
+        pilasDeJuego = juego.getPilasJuego();
+        pilasDeEscalera = juego.getPilasEscalera();
+        cartasaUbicar = juego.getCartasaUbicar();
+        mazoVacio = juego.getMazoVacio();
+        puntaje = juego.getPuntacion();
+        movimientosExitosos = juego.getMovimientosExitosos();
+        nombreJugador = juego.getNombre();
+        modoDeJuego = juego.getModoDeJuego();
 
         recargarVentana();
     }
 
-    public void recargarVentana(){
+    public void recargarVentana() {
 
         recargarBotonesModo();
-        recargarCartas();
-
+        recargarMazo();
+        recargarEscalera();
 
     }
 
-    public void crearVentana(){
-        this.setBounds(0, 0, 1280,720);
+    public void crearVentana() {
+        this.setBounds(0, 0, 1280, 720);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
 
-    public void registrarFuente(){
+    public void registrarFuente() {
         try {
             fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -222,8 +223,8 @@ public class Tablero extends JFrame implements Observer{
         }
     }
 
-    public void recargarBotonesModo(){
-        if(!(unaCarta == null || tresCartas == null)) {
+    public void recargarBotonesModo() {
+        if (!(unaCarta == null || tresCartas == null)) {
             if (modoDeJuego.getModo().equals("unaCarta")) {
                 unaCarta.setBackground(new Color(235, 113, 113));
             } else {
@@ -237,17 +238,26 @@ public class Tablero extends JFrame implements Observer{
         }
     }
 
-    public void recargarCartas(){
+    public void recargarMazo() {
 
-        if(mazo != null) {
+        if (mazo != null) {
             if (!mazoVacio) {
                 mazo.setIcon(new ImageIcon("images/reversocarta.png"));
             } else {
                 mazo.setIcon(new ImageIcon("images/transparente.png"));
             }
         }
+    }
 
-
-
+    public void recargarEscalera() {
+        if (!escaleras.isEmpty()){
+            for (int i = 0; i < 4; i++) {
+                if (pilasDeEscalera.get(i).getPila().isEmpty()) {
+                    escaleras.get(i).setIcon(new ImageIcon("images/transparenteEscalera.png"));
+                } else {
+                    escaleras.get(i).setIcon(pilasDeEscalera.get(i).getUltimaCarta().getImagen());
+                }
+            }
+        }
     }
 }
