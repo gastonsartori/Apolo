@@ -82,7 +82,7 @@ public class Menu extends JFrame implements ActionListener {
         JButton boton = (JButton) e.getSource();
 
         if(boton.equals(jugar)){
-            new VentanaConfig().crearVentana();
+            new VentanaConfig(this).crearVentana();
         }
         else if(boton.equals(reglas)){
             //PANTALLA REGLAS
@@ -97,11 +97,10 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     public void crearVentana(){
-        Menu menu = new Menu();
-        menu.setBounds(0, 0, 1280,720);
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
-        menu.setResizable(false);
+        this.setBounds(0, 0, 1280,720);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
     }
 }

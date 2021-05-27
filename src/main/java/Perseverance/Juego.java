@@ -51,6 +51,8 @@ public class Juego implements Subject{
 
     public ArrayList<Observer> getObservers() { return observers; }
 
+    public boolean getMazoVacio(){return mazo.getMazo().isEmpty();}
+
     //
 
     public void crearPilasDeJuego(){

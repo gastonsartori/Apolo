@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaConfig extends JFrame implements ActionListener {
+    private Menu menuPrincipal;
     private JRadioButton unaCarta;
     private JRadioButton tresCartas;
     private ButtonGroup modoJuego;
@@ -17,7 +18,9 @@ public class VentanaConfig extends JFrame implements ActionListener {
     private JButton atras;
 
 
-    public VentanaConfig(){
+    public VentanaConfig(Menu menu){
+
+        menuPrincipal=menu;
 
         setLayout(null);
         setResizable(false);
@@ -68,6 +71,9 @@ public class VentanaConfig extends JFrame implements ActionListener {
 
         if(boton.equals(aceptar)){
             //ACEPTAR
+            new Controlador(nombreText.getText());
+            menuPrincipal.dispose();
+            dispose();
         }
 
         else if(boton.equals(atras)){
@@ -75,10 +81,9 @@ public class VentanaConfig extends JFrame implements ActionListener {
         }
     }
     public void crearVentana(){
-        VentanaConfig ventana = new VentanaConfig();
-        ventana.setBounds(0, 0, 512,320);
-        ventana.setVisible(true);
-        ventana.setLocationRelativeTo(null);
-        ventana.setResizable(false);
+        this.setBounds(0, 0, 512,320);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 }
