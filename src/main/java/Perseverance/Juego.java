@@ -124,7 +124,14 @@ public class Juego implements Subject{
                     }
                 }
             }
+            notifyObservers();
         }
+    }
+
+    public void agregaraPila(Carta carta, PilaDeCartas pila){
+        ArrayList<Carta> cartas= new ArrayList<>();
+        cartas.add(carta);
+        agregaraPila(cartas,pila);
     }
 
     public boolean comprobarWin(){
