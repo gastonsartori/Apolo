@@ -16,6 +16,7 @@ public class VentanaConfig extends JFrame implements ActionListener {
     private JButton aceptar;
     private JButton atras;
 
+
     public VentanaConfig(){
 
         setLayout(null);

@@ -157,7 +157,7 @@ public class AppTest
 
     @Test
     public void testCreadoDePilasDeJuego(){
-        Juego juego = new Juego();
+        Juego juego = new Juego("jugador");
 
         assertEquals(7,juego.getPilasJuego().size());
         assertEquals(1,juego.getPilasJuego().get(0).getCartasRestantes());
@@ -171,7 +171,7 @@ public class AppTest
 
     @Test
     public void testCreadoDePilasDeEscalera(){
-        Juego juego = new Juego();
+        Juego juego = new Juego("jugador");
 
         assertEquals(4,juego.getPilasEscalera().size());
         assertEquals(0,juego.getPilasEscalera().get(0).getCartasRestantes());
@@ -182,7 +182,7 @@ public class AppTest
 
     @Test
     public void testPedirCartas(){
-        Juego juego=new Juego();
+        Juego juego=new Juego("jugador");
         juego.pedirCartas();
         //dsp de creadas las pilas de juego, quedan 24 cartas en el mazo
         //si pido 1, deben quedar 23 en el mazo, y 1 en la zona de cartas a ubicar
@@ -192,7 +192,7 @@ public class AppTest
 
     @Test
     public void testReiniciarMazo(){
-        Juego juego=new Juego();
+        Juego juego=new Juego("jugador");
         Mazo mazoInicial = new Mazo();
         mazoInicial.setMazo((ArrayList<Carta>) juego.getMazo().getMazo().clone());
         for (int i = 0; i < 25; i++) {
@@ -211,7 +211,7 @@ public class AppTest
 
     @Test
     public void testAgregaraPila(){
-        Juego juego=new Juego();
+        Juego juego=new Juego("jugador");
         Carta carta=new Carta(Palo.Corazones,Valor.As);
         ArrayList<Carta> cartas = new ArrayList<>();
         cartas.add(carta);
@@ -223,7 +223,7 @@ public class AppTest
 
     @Test
     public void testComprobarWin(){
-        Juego juego = new Juego();
+        Juego juego = new Juego("jugador");
         for (int i = 0; i < 4; i++) {
             ArrayList<Carta> carta = new ArrayList<>();
             carta.add(new Carta(Palo.getPalo(i),Valor.K));
@@ -231,6 +231,28 @@ public class AppTest
 
         }
         assertTrue(juego.comprobarWin());
+    }
+
+
+    /**
+     * Integration tests
+     */
+
+    @Test
+    public void testCambioModoDeJuego(){
+        Juego juego=new Juego("jugador");
+        juego.pedirCartas();
+
+        assertEquals(23,juego.getMazo().getCartasRestantes());
+        assertEquals(1,juego.getCartasaUbicar().size());
+
+        ModoDeJuego tresCartas=new TresCartas();
+        juego.setModoDeJuego(tresCartas);
+        juego.pedirCartas();
+
+        assertEquals(20,juego.getMazo().getCartasRestantes());
+        assertEquals(4,juego.getCartasaUbicar().size());
+
     }
 
 

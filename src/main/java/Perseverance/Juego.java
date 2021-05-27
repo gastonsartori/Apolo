@@ -13,10 +13,11 @@ public class Juego implements Subject{
     private ArrayList<Carta> cartasaUbicar;
     private int movimientosaEscaleras;
     private int movimientosExitosos;
+    private String nombre;
 
     private ArrayList<Observer> observers;
 
-    public Juego(){
+    public Juego(String nombre){
         mazo=new Mazo();
         mazo.mezclar();
         pilasJuego=new ArrayList<>();
@@ -28,6 +29,7 @@ public class Juego implements Subject{
         cartasaUbicar=new ArrayList<>();
         movimientosaEscaleras=0;
         movimientosExitosos=0;
+        this.nombre=nombre;
     }
 
     //GETTERS
