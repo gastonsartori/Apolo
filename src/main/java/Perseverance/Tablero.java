@@ -158,10 +158,8 @@ public class Tablero extends JFrame implements Observer{
         add(tresCartas);
 
         mazo = new JButton();
-        mazo.setBounds(105, 105, 98, 117);
-        mazo.setFont(fuente);
+        mazo.setBounds(90, 105, 98, 117);
         mazo.setIcon(new ImageIcon("images/reversocarta.png"));
-        mazo.setBackground(new Color(230, 230, 230));
         mazo.setFocusPainted(false);
         mazo.setName("mazoTablero");
         mazo.addActionListener(controlador);
