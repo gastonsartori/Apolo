@@ -16,7 +16,7 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
-    @Test
+    @Test //001
     public void testCrearMazo() {
         Mazo mazo=new Mazo();
         int repetida=0;
@@ -30,7 +30,7 @@ public class AppTest
         assertEquals(51,repetida);
     }
 
-    @Test
+    @Test //002
     public void testMezclarMazo() {
         Mazo mazo=new Mazo();
         Mazo mazoMezclado=new Mazo();
@@ -48,7 +48,7 @@ public class AppTest
         assertTrue(mezclado);
     }
 
-    @Test
+    @Test //003
     public void testAgregarPZDJVaciaK(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.K);
@@ -58,7 +58,7 @@ public class AppTest
         assertTrue(pila.movimientoValido(cartas));
     }
 
-    @Test
+    @Test //004
     public void testAgregarPZDJVaciaNoK(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.As);
@@ -69,7 +69,7 @@ public class AppTest
         assertFalse(pila.movimientoValido(cartas));
     }
 
-    @Test
+    @Test //005
     public void testAgregarPZDJValido(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.K);
@@ -86,7 +86,7 @@ public class AppTest
         assertTrue(pila.movimientoValido(cartas2));
     }
 
-    @Test
+    @Test //006
     public void testAgregarPZDJNoValido(){
         PilaEnZonaDeJuego pila = new PilaEnZonaDeJuego();
         Carta carta = new Carta(Palo.Corazones,Valor.K);
@@ -102,7 +102,7 @@ public class AppTest
         assertFalse(pila.movimientoValido(cartas2));
     }
 
-    @Test
+    @Test //007
     public void testAgregarPZDEVaciaAs(){
         PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
         Carta carta = new Carta(Palo.Corazones,Valor.As);
@@ -112,7 +112,7 @@ public class AppTest
         assertTrue(pila.movimientoValido(cartas));
     }
 
-    @Test
+    @Test //008
     public void testAgregarPZDEVaciaNoAs(){
         PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
         Carta carta = new Carta(Palo.Corazones,Valor.Dos);
@@ -123,7 +123,7 @@ public class AppTest
         assertFalse(pila.movimientoValido(cartas));
     }
 
-    @Test
+    @Test //009
     public void testAgregarPZDEValido(){
         PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
         Carta carta = new Carta(Palo.Corazones,Valor.As);
@@ -139,7 +139,7 @@ public class AppTest
         assertTrue(pila.movimientoValido(cartas2));
     }
 
-    @Test
+    @Test //010
     public void testAgregarPZDENoValido(){
         PilaEnZonaDeEscalera pila = new PilaEnZonaDeEscalera();
         Carta carta = new Carta(Palo.Corazones,Valor.As);
@@ -155,7 +155,7 @@ public class AppTest
         assertFalse(pila.movimientoValido(cartas2));
     }
 
-    @Test
+    @Test //011
     public void testCreadoDePilasDeJuego(){
         Juego juego = new Juego("jugador");
 
@@ -169,7 +169,7 @@ public class AppTest
         assertEquals(7,juego.getPilasJuego().get(6).getCartasRestantes());
     }
 
-    @Test
+    @Test //012
     public void testCreadoDePilasDeEscalera(){
         Juego juego = new Juego("jugador");
 
@@ -180,7 +180,7 @@ public class AppTest
         assertEquals(0,juego.getPilasEscalera().get(3).getCartasRestantes());
     }
 
-    @Test
+    @Test //013
     public void testPedirCartas(){
         Juego juego=new Juego("jugador");
         juego.pedirCartas();
@@ -190,7 +190,7 @@ public class AppTest
         assertEquals(1,juego.getCartasaUbicar().size());
     }
 
-    @Test
+    @Test //014
     public void testReiniciarMazo(){
         Juego juego=new Juego("jugador");
         Mazo mazoInicial = new Mazo();
@@ -209,7 +209,7 @@ public class AppTest
         assertEquals(0,juego.getCartasaUbicar().size());
     }
 
-    @Test
+    @Test //015
     public void testAgregaraPila(){
         Juego juego=new Juego("jugador");
         Carta carta=new Carta(Palo.Corazones,Valor.As);
@@ -221,7 +221,7 @@ public class AppTest
 
     }
 
-    @Test
+    @Test //016
     public void testComprobarWin(){
         Juego juego = new Juego("jugador");
         for (int i = 0; i < 4; i++) {
