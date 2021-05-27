@@ -8,12 +8,13 @@ public class Juego implements Subject{
     private Mazo mazo;
     private ArrayList<PilaEnZonaDeJuego> pilasJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasEscalera;
-    private int puntaje;
+    private int puntuacion;
     private ModoDeJuego modoDeJuego;
     private ArrayList<Carta> cartasaUbicar;
     private int movimientosaEscaleras;
     private int movimientosExitosos;
     private String nombre;
+    private int bonificacionDeTiempo;
 
     private ArrayList<Observer> observers;
 
@@ -25,11 +26,12 @@ public class Juego implements Subject{
         pilasEscalera=new ArrayList<>();
         crearPilasDeEscalera();
         modoDeJuego=new UnaCarta();
-        puntaje=0;
         cartasaUbicar=new ArrayList<>();
         movimientosaEscaleras=0;
         movimientosExitosos=0;
         this.nombre=nombre;
+        bonificacionDeTiempo=1000;
+        actPuntacion();
     }
 
     //GETTERS
@@ -39,7 +41,7 @@ public class Juego implements Subject{
 
     public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
 
-    public int getPuntaje() { return puntaje; }
+    public int getPuntacion() { return puntuacion; }
 
     public int getMovimientosExitosos() { return movimientosExitosos; }
 
@@ -112,7 +114,7 @@ public class Juego implements Subject{
             movimientosExitosos++;
             if(pila.getTipo().equals("escalera")) {
                 movimientosaEscaleras++;
-                actPuntaje();
+                actPuntacion();
                 if(cartas.get(0).getValor() == Valor.K){
                     if(comprobarWin()){
                         win();
@@ -139,7 +141,7 @@ public class Juego implements Subject{
         System.out.println("ganaste prro");
     }
 
-    public void actPuntaje(){ puntaje=movimientosaEscaleras*10;}
+    public void actPuntacion(){ puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;}
 
     //strategy
     public void setModoDeJuego(ModoDeJuego modoDeJuego) { this.modoDeJuego = modoDeJuego; }

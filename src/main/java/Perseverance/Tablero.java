@@ -97,7 +97,7 @@ public class Tablero extends JFrame implements Observer {
         pilasDeEscalera=juego.getPilasEscalera();
         cartasaUbicar= juego.getCartasaUbicar();
         mazoVacio=juego.getMazoVacio();
-        puntaje=juego.getPuntaje();
+        puntaje=juego.getPuntacion();
         movimientosExitosos=juego.getMovimientosExitosos();
         nombreJugador=juego.getNombre();
 
