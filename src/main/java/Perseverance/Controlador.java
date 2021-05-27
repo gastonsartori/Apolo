@@ -39,13 +39,11 @@ public class Controlador implements ActionListener {
                 new VentanaConfig(tablero).crearVentana();
                 tablero.dispose();
             }
-        }
-        else if(boton.getName().equals("reglasTablero")){
+        }else if(boton.getName().equals("reglasTablero")){
             new Reglas().crearVentana();
-        }
-        else if(boton.getName().equals("estadisticasTablero")){
-        }
-        else if(boton.getName().equals("menuPrincipalTablero")){
+        }else if(boton.getName().equals("estadisticasTablero")){
+
+        }else if(boton.getName().equals("menuPrincipalTablero")){
             int confirmed = JOptionPane.showConfirmDialog(null,
                     "¿Estas seguro que queres salir?", "Salir",
                     JOptionPane.YES_NO_OPTION);
@@ -53,12 +51,12 @@ public class Controlador implements ActionListener {
                 new Menu().crearVentana();
                 tablero.dispose();
             }
-        }
-        else if(boton.getName().equals("unaCartaTablero")){
+        }else if(boton.getName().equals("unaCartaTablero")){
             setearModoUnaCarta();
-        }
-        else if(boton.getName().equals("tresCartasTablero")){
+        }else if(boton.getName().equals("tresCartasTablero")){
             setearModoTresCartas();
+        }else if(boton.getName().equals("mazoTablero")){
+            juego.pedirCartas();
         }
 
 

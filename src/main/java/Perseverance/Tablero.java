@@ -157,6 +157,16 @@ public class Tablero extends JFrame implements Observer{
         tresCartas.addActionListener(controlador);
         add(tresCartas);
 
+        mazo = new JButton();
+        mazo.setBounds(105, 105, 98, 117);
+        mazo.setFont(fuente);
+        mazo.setIcon(new ImageIcon("images/reversocarta.png"));
+        mazo.setBackground(new Color(230, 230, 230));
+        mazo.setFocusPainted(false);
+        mazo.setName("mazoTablero");
+        mazo.addActionListener(controlador);
+        add(mazo);
+
 
         add(tablero);
 
@@ -220,15 +230,15 @@ public class Tablero extends JFrame implements Observer{
 
     public void recargarCartas(){
 
-        mazo = new JButton();
-        mazo.setBounds(105, 105,98,117);
-        mazo.setFont(fuente);
-        mazo.setIcon(new ImageIcon("images/reversocarta.png"));
-        mazo.setBackground(new Color(230,230,230));
-        mazo.setFocusPainted(false);
-        mazo.setName("mazoTablero");
-        mazo.addActionListener(controlador);
-        add(mazo);
+        if(mazo != null) {
+            if (!mazoVacio) {
+                mazo.setIcon(new ImageIcon("images/reversocarta.png"));
+            } else {
+                mazo.setIcon(new ImageIcon("images/transparente.png"));
+            }
+        }
+
+
 
     }
 }

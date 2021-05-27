@@ -88,7 +88,9 @@ public class Juego implements Subject{
         }
         else {
             modoDeJuego.pedirCarta(mazo, cartasaUbicar);
+            System.out.println(mazo.getCartasRestantes());
         }
+        notifyObservers();
     }
 
     public Carta ubicarCarta(){
