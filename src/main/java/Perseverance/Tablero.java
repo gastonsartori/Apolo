@@ -15,8 +15,16 @@ public class Tablero extends JFrame implements Observer{
     private JButton unaCarta;
     private JButton tresCartas;
 
-    private ArrayList<JButton> cartasDeJuego;
+    private ArrayList<JButton> pilaDeJuego1;
+    private ArrayList<JButton> pilaDeJuego2;
+    private ArrayList<JButton> pilaDeJuego3;
+    private ArrayList<JButton> pilaDeJuego4;
+    private ArrayList<JButton> pilaDeJuego5;
+    private ArrayList<JButton> pilaDeJuego6;
+    private ArrayList<JButton> pilaDeJuego7;
     private ArrayList<JButton> cartasDeEscalera;
+    private JButton mazo;
+    private JButton cartaUbicar;
     private Font fuente;
 
     private JLabel tablero;
@@ -152,6 +160,8 @@ public class Tablero extends JFrame implements Observer{
 
         add(tablero);
 
+        recargarCartas();
+
     }
 
     @Override
@@ -171,6 +181,8 @@ public class Tablero extends JFrame implements Observer{
     public void recargarVentana(){
 
         recargarBotonesModo();
+        recargarCartas();
+
 
     }
 
@@ -204,5 +216,19 @@ public class Tablero extends JFrame implements Observer{
                 tresCartas.setBackground(new Color(230, 230, 230));
             }
         }
+    }
+
+    public void recargarCartas(){
+
+        mazo = new JButton();
+        mazo.setBounds(105, 105,98,117);
+        mazo.setFont(fuente);
+        mazo.setIcon(new ImageIcon("images/reversocarta.png"));
+        mazo.setBackground(new Color(230,230,230));
+        mazo.setFocusPainted(false);
+        mazo.setName("mazoTablero");
+        mazo.addActionListener(controlador);
+        add(mazo);
+
     }
 }
