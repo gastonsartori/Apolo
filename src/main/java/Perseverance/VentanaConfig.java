@@ -28,6 +28,8 @@ public class VentanaConfig extends JFrame implements ActionListener {
         setLayout(null);
         setResizable(false);
         setTitle("Jugar");
+        ImageIcon icono = new ImageIcon("images/icono.png");
+        setIconImage(icono.getImage());
 
         registrarFuente();
 

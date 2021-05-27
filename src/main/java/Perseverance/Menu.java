@@ -85,7 +85,7 @@ public class Menu extends JFrame implements ActionListener {
             new VentanaConfig(this).crearVentana();
         }
         else if(boton.equals(reglas)){
-            //PANTALLA REGLAS
+            new Reglas().crearVentana();
         }
         else if(boton.equals(puntajes)){
             //PANTALLA PUNTAJES

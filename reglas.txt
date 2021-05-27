@@ -1,0 +1,17 @@
+Objetivo del solitario clásico
+
+El solitario trata de ordenar las cartas de forma ascendente basándonos en una estructura de siete columnas.
+
+Reglas:
+
+-Hay que colocar una carta menor por encima de la mayor de forma que se pueda ver el número de la que quede debajo.
+
+-No se puede colocar cartas del mismo palo ni del mismo color. Es decir, hay que ir alternando.
+
+-Si ya no podemos realizar más movimientos, sacaremos una/tres (dependiendo del modo) cartas del mazo y las colocaremos donde corresponda.
+
+-Podemos mover los varios naipes a la vez y colocarlos encima de otra columna.
+
+-Cuando se quite una carta boca arriba y quede libre la que está boca abajo, le daremos la vuelta a esta última.
+
+-Si sale un as, lo pondremos en uno de los cuatro recuadros e iremos colocando de forma ordenada las cartas del mismo palo que podamos.
