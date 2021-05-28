@@ -16,11 +16,6 @@ public class Controlador implements ActionListener {
         this.tablero = new Tablero(juego,this);
         juego.registerObserver((Observer) tablero);
         tablero.crearVentana();
-        // prueba
-        Carta carta=new Carta(Palo.Treboles,Valor.As);
-        carta.darVuelta();
-        juego.agregaraPila(carta,juego.getPilasEscalera().get(0));
-
     }
 
     public void setearModoUnaCarta(){
@@ -63,13 +58,13 @@ public class Controlador implements ActionListener {
         }else if(boton.getName().equals("mazoTablero")){
             juego.pedirCartas();
         }else if(boton.getName().equals("cartaUbicar")){
-
         }
         for (int i = 0; i < 4; i++) {
             if(boton.getName().equals("escalera"+i)){
 
             }
         }
+
 
     }
 }

@@ -68,7 +68,7 @@ public class Juego implements Subject{
         for (int i = 1; i < 8; i++) {
             PilaEnZonaDeJuego pila=new PilaEnZonaDeJuego();
             ArrayList<Carta> cartas= new ArrayList<>();
-            for (int j = 0; j < i-1; j++) {
+            for (int j = 0; j < i; j++) {
                 cartas.add(mazo.getUltimaCarta());
                 mazo.quitarUltimaCarta();
             }
