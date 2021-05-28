@@ -25,10 +25,26 @@ public class PilaEnZonaDeEscalera extends PilaDeCartas{
         }
         return false;
     }
+    public boolean movimientoValido(Carta carta) {
+            if(pila.isEmpty()) {                                // Si la pila en zona de escalera esta vacia
+                if(carta.getValor().ordinal() == 0){     //si la carta es un As
+                    return true;                               //Agrego la carta a la pila
+                }
+            }
+            else{                                                                 //Si la pila NO esta vacia
+                if(comprobarPalo(carta) && comprobarValor(carta)){ //El palo y valor de la carta es correcto
+                    return true;                                       //Agrego la carta a la pila
+                }
+            }
+        return false;
+    }
 
     @Override
     public void agregarCartas(ArrayList<Carta> cartas) {
         pila.add(cartas.get(0));
+    }
+    public void agregarCartas(Carta carta) {
+        pila.add(carta);
     }
 
     @Override

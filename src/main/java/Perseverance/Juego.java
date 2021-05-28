@@ -16,6 +16,7 @@ public class Juego implements Subject{
     private String nombre;
     private int bonificacionDeTiempo;
     private Carta cartaSeleccionada;
+    private ArrayList<Carta> origen;
 
     private ArrayList<Observer> observers;
 
@@ -35,6 +36,7 @@ public class Juego implements Subject{
         actPuntacion();
         observers=new ArrayList<>();
         cartaSeleccionada=null;
+        origen = new ArrayList<>();
     }
 
     //GETTERS
@@ -115,6 +117,34 @@ public class Juego implements Subject{
 
     public void seleccionCartaUbicar(){
         cartaSeleccionada = ubicarCarta();
+        origen = cartasaUbicar;
+    }
+
+    public void seleccionEscalera(int i){
+        if(cartaSeleccionada != null && pilasEscalera.get(i).movimientoValido(cartaSeleccionada)){
+            pilasEscalera.get(i).agregarCartas(cartaSeleccionada);
+            origen.remove(cartaSeleccionada);
+            notifyObservers();
+            cartaSeleccionada = null;
+        }
+        else if (cartaSeleccionada == null){
+            cartaSeleccionada = pilasEscalera.get(i).getUltimaCarta();
+            origen = pilasEscalera.get(i).getPila();
+        }
+    }
+    public void seleccionJuego(int i,int j){
+
+        ArrayList<Carta> cartas = new ArrayList<>();
+        if(cartaSeleccionada == null){
+            if(pilasJuego.get(i).getCartasRestantes() == 12-j){
+                cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
+                origen = pilasJuego.get(i).getPila();
+            }
+            else{
+
+            }
+        }
+
     }
 
     //METODOS DE AGREGAR A PILAS
