@@ -123,7 +123,7 @@ public class Juego implements Subject{
 
     public void seleccionEscalera(int i){
         if(cartaSeleccionada != null && pilasEscalera.get(i).movimientoValido(cartaSeleccionada)){
-            pilasEscalera.get(i).agregarCartas(cartaSeleccionada);
+            agregaraPila(cartaSeleccionada,pilasEscalera.get(i));
             origen.remove(cartaSeleccionada);
             notifyObservers();
             cartaSeleccionada = null;
@@ -156,7 +156,7 @@ public class Juego implements Subject{
                     }
                 } else if (cartasSeleccionadas == null) {                              // si tenia seleccionada solo una carta
                     if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
-                        pilasJuego.get(i).agregarCarta(cartaSeleccionada);
+                        agregaraPila(cartaSeleccionada,pilasJuego.get(i));
                         origen.remove(cartaSeleccionada);
                         notifyObservers();
                         cartaSeleccionada = null;
@@ -166,7 +166,7 @@ public class Juego implements Subject{
                     }
                 } else {      // si tenia seleccionada varias
                     if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
-                        pilasJuego.get(i).agregarCartas(cartasSeleccionadas);
+                        agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
                         origen.removeAll(cartasSeleccionadas);
                         notifyObservers();
                         cartasSeleccionadas = null;
@@ -185,7 +185,7 @@ public class Juego implements Subject{
             if(cartaSeleccionada != null || cartasSeleccionadas != null){
                 if(cartasSeleccionadas==null){
                     if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
-                        pilasJuego.get(i).agregarCarta(cartaSeleccionada);
+                        agregaraPila(cartaSeleccionada,pilasJuego.get(i));
                         origen.remove(cartaSeleccionada);
                         notifyObservers();
                         cartaSeleccionada = null;
@@ -195,7 +195,7 @@ public class Juego implements Subject{
                     }
                 }else {      // si tenia seleccionada varias
                     if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
-                        pilasJuego.get(i).agregarCartas(cartasSeleccionadas);
+                        agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
                         origen.removeAll(cartasSeleccionadas);
                         notifyObservers();
                         cartasSeleccionadas = null;
@@ -216,15 +216,7 @@ public class Juego implements Subject{
         if(pila.movimientoValido(cartas)){
             pila.agregarCartas(cartas);
             movimientosExitosos++;
-            if(pila.getTipo().equals("escalera")) {
-                movimientosaEscaleras++;
-                actPuntacion();
-                if(cartas.get(0).getValor() == Valor.K){
-                    if(comprobarWin()){
-                        win();
-                    }
-                }
-            }
+
             notifyObservers();
         }
     }
@@ -233,6 +225,17 @@ public class Juego implements Subject{
         ArrayList<Carta> cartas= new ArrayList<>();
         cartas.add(carta);
         agregaraPila(cartas,pila);
+        if(pila.getTipo().equals("escalera")) {
+            movimientosaEscaleras++;
+            System.out.println("mov a escalera " + movimientosaEscaleras);
+            actPuntacion();
+            if(cartas.get(0).getValor() == Valor.K){
+                if(comprobarWin()){
+                    win();
+                }
+            }
+        }
+
     }
 
     public boolean comprobarWin(){
