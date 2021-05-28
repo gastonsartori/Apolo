@@ -62,6 +62,7 @@ public class Juego implements Subject{
 
     public Carta getCartaSeleccionada() { return cartaSeleccionada; }
 
+
     //
 
     public void crearPilasDeJuego(){
@@ -110,6 +111,10 @@ public class Juego implements Subject{
             mazo.getMazo().add(ubicarCarta());
             cartaUbicada();
         }
+    }
+
+    public void seleccionCartaUbicar(){
+        cartaSeleccionada = ubicarCarta();
     }
 
     //METODOS DE AGREGAR A PILAS
