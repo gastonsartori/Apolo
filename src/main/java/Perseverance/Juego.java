@@ -160,6 +160,9 @@ public class Juego implements Subject{
                         origen.remove(cartaSeleccionada);
                         notifyObservers();
                         cartaSeleccionada = null;
+                    }else{
+                        cartaSeleccionada=null;
+                        origen=null;
                     }
                 } else {      // si tenia seleccionada varias
                     if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
@@ -167,6 +170,9 @@ public class Juego implements Subject{
                         origen.removeAll(cartasSeleccionadas);
                         notifyObservers();
                         cartasSeleccionadas = null;
+                    }else{
+                        cartasSeleccionadas=null;
+                        origen=null;
                     }
                 }
             } else {
@@ -183,6 +189,9 @@ public class Juego implements Subject{
                         origen.remove(cartaSeleccionada);
                         notifyObservers();
                         cartaSeleccionada = null;
+                    }else{
+                        cartaSeleccionada=null;
+                        origen=null;
                     }
                 }else {      // si tenia seleccionada varias
                     if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
@@ -190,6 +199,9 @@ public class Juego implements Subject{
                         origen.removeAll(cartasSeleccionadas);
                         notifyObservers();
                         cartasSeleccionadas = null;
+                    }else{
+                        cartasSeleccionadas=null;
+                        origen=null;
                     }
                 }
             }
