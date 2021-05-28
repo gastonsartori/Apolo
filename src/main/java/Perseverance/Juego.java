@@ -1,6 +1,6 @@
 package Perseverance;
 
-import java.lang.reflect.Array;
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Juego implements Subject{
@@ -252,7 +252,8 @@ public class Juego implements Subject{
     }
 
     public void win(){
-        System.out.println("ganaste prro");
+        JOptionPane.showMessageDialog(null, "Felicidades, has ganado el juego!");
+        System.exit(0);
     }
 
     public void actPuntacion(){ puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;}
