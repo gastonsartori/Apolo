@@ -23,11 +23,25 @@ public class PilaEnZonaDeJuego extends PilaDeCartas{
         }
         return false;
     }
+    public boolean movimientoValido(Carta carta) {
+        if(pila.isEmpty()) {                                    // Si la pila en zona de juego esta vacia
+            if(carta.getValor().ordinal() == 12){       //si la carta es una K
+                return true;                            //Agrego las cartas a la pila
+            }
+        }
+        else{                                                                   //Si la pila NO esta vacia
+            if(comprobarPalo(carta) && comprobarValor(carta)){  //El palo y valor de la carta es correcto
+                return true;                                           //Agrego las cartas a la pila
+            }
+        }
+        return false;
+    }
 
     @Override
     public void agregarCartas(ArrayList<Carta> cartas) {
         pila.addAll(cartas);
     }
+    public void agregarCarta(Carta carta) { pila.add(carta); }
 
     @Override
     public ArrayList<Carta> obtenerCartas(int index) {

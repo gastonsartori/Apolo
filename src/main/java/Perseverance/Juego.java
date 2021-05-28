@@ -17,6 +17,7 @@ public class Juego implements Subject{
     private int bonificacionDeTiempo;
     private Carta cartaSeleccionada;
     private ArrayList<Carta> origen;
+    private ArrayList<Carta> cartasSeleccionadas;
 
     private ArrayList<Observer> observers;
 
@@ -135,17 +136,67 @@ public class Juego implements Subject{
     public void seleccionJuego(int i,int j){
 
         ArrayList<Carta> cartas = new ArrayList<>();
-        if(cartaSeleccionada == null){
-            if(pilasJuego.get(i).getCartasRestantes() == 12-j){
-                cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
-                origen = pilasJuego.get(i).getPila();
-            }
-            else{
 
+        if(!pilasJuego.get(i).getPila().isEmpty()) {
+            if (pilasJuego.get(i).getPila().get(j).isVisible()) {
+                if (cartaSeleccionada == null && cartasSeleccionadas == null) {  // si no tengo nada seleccionado
+                    if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, selecciono solo esa
+                        cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
+                        cartasSeleccionadas = null;
+                        origen = pilasJuego.get(i).getPila();
+                        System.out.println(cartaSeleccionada.toString());
+                    } else {                                                       //si no, selecciono a partir de esa, hacia abajo
+                        for (int k = j; k < pilasJuego.get(i).getCartasRestantes(); k++) {
+                            System.out.println(pilasJuego.get(i).getPila().get(k).toString());
+                            cartas.add(pilasJuego.get(i).getPila().get(k));
+                            cartasSeleccionadas = cartas;
+                            cartaSeleccionada = null;
+                            origen = pilasJuego.get(i).getPila();
+                        }
+                    }
+                } else if (cartasSeleccionadas == null) {                              // si tenia seleccionada solo una carta
+                    if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
+                        pilasJuego.get(i).agregarCarta(cartaSeleccionada);
+                        origen.remove(cartaSeleccionada);
+                        notifyObservers();
+                        cartaSeleccionada = null;
+                    }
+                } else {      // si tenia seleccionada varias
+                    if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
+                        pilasJuego.get(i).agregarCartas(cartasSeleccionadas);
+                        origen.removeAll(cartasSeleccionadas);
+                        notifyObservers();
+                        cartasSeleccionadas = null;
+                    }
+                }
+            } else {
+                if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, la doy vuelta
+                    pilasJuego.get(i).getPila().get(j).darVuelta();
+                    notifyObservers();
+                }
+            }
+        }else{
+            if(cartaSeleccionada != null || cartasSeleccionadas != null){
+                if(cartasSeleccionadas==null){
+                    if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
+                        pilasJuego.get(i).agregarCarta(cartaSeleccionada);
+                        origen.remove(cartaSeleccionada);
+                        notifyObservers();
+                        cartaSeleccionada = null;
+                    }
+                }else {      // si tenia seleccionada varias
+                    if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
+                        pilasJuego.get(i).agregarCartas(cartasSeleccionadas);
+                        origen.removeAll(cartasSeleccionadas);
+                        notifyObservers();
+                        cartasSeleccionadas = null;
+                    }
+                }
             }
         }
+}
 
-    }
+
 
     //METODOS DE AGREGAR A PILAS
 
