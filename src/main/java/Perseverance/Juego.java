@@ -88,7 +88,6 @@ public class Juego implements Subject{
         }
         else {
             modoDeJuego.pedirCarta(mazo, cartasaUbicar);
-            System.out.println(mazo.getCartasRestantes());
         }
         notifyObservers();
     }
@@ -105,6 +104,7 @@ public class Juego implements Subject{
         int cantidadDeCartas=cartasaUbicar.size();
         for (int i = 0; i < cantidadDeCartas; i++) {
             mazo.getMazo().add(ubicarCarta());
+            ubicarCarta().darVuelta();
             cartaUbicada();
         }
     }

@@ -13,6 +13,7 @@ public class TresCartas implements ModoDeJuego{
         for (int i = 0; i < 3; i++) {
             if (!mazo.getMazo().isEmpty()) {
                 cartasaUbicar.add(mazo.getUltimaCarta());
+                mazo.getUltimaCarta().darVuelta();
                 mazo.quitarUltimaCarta();
             }
         }

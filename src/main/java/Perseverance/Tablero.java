@@ -15,16 +15,12 @@ public class Tablero extends JFrame implements Observer {
     private JButton unaCarta;
     private JButton tresCartas;
 
-    private ArrayList<JButton> pilaDeJuego1;
-    private ArrayList<JButton> pilaDeJuego2;
-    private ArrayList<JButton> pilaDeJuego3;
-    private ArrayList<JButton> pilaDeJuego4;
-    private ArrayList<JButton> pilaDeJuego5;
-    private ArrayList<JButton> pilaDeJuego6;
-    private ArrayList<JButton> pilaDeJuego7;
+    private ArrayList<ArrayList<JButton>> juegos;
     private ArrayList<JButton> escaleras;
     private JButton mazo;
     private JButton cartaUbicar;
+    private JLabel cartaUbicar2;
+    private JLabel cartaUbicar3;
     private Font fuente;
 
     private JLabel tablero;
@@ -42,6 +38,7 @@ public class Tablero extends JFrame implements Observer {
     private int movimientosExitosos;
     private String nombreJugador;
     private ModoDeJuego modoDeJuego;
+    private boolean primeraVez;
 
     private Juego juego;
     private Controlador controlador;
@@ -49,10 +46,17 @@ public class Tablero extends JFrame implements Observer {
     public Tablero(Juego juego, Controlador controlador) {
 
         this.controlador = controlador;
+
         this.juego = juego;
+
         registrarFuente();
+
         escaleras = new ArrayList<>();
+
+        primeraVez=true;
+
         update();
+
         setLayout(null);
         setTitle("Solitario Apolo");
         ImageIcon icono = new ImageIcon("images/icono.png");
@@ -65,6 +69,57 @@ public class Tablero extends JFrame implements Observer {
         tablero.setBounds(0, 0, 1280, 720);
 
 
+        crearBotones();
+        crearMazoyCartasUbicar();
+        crearEscaleras();
+
+
+
+
+
+        add(tablero);
+
+        recargarMazoyCartasUbicar();
+        recargarEscalera();
+
+
+    }
+
+    @Override
+    public void update() {
+        pilasDeJuego = juego.getPilasJuego();
+        pilasDeEscalera = juego.getPilasEscalera();
+        cartasaUbicar = juego.getCartasaUbicar();
+        System.out.println(cartasaUbicar.size());
+        mazoVacio = juego.getMazoVacio();
+        puntaje = juego.getPuntacion();
+        movimientosExitosos = juego.getMovimientosExitosos();
+        nombreJugador = juego.getNombre();
+        modoDeJuego = juego.getModoDeJuego();
+
+        if(!primeraVez){
+            System.out.println("RECARGO");
+            recargarVentana();
+        }
+        primeraVez=false;
+    }
+
+    public void recargarVentana() {
+
+        recargarBotonesModo();
+        recargarMazoyCartasUbicar();
+        recargarEscalera();
+
+    }
+
+    public void crearVentana() {
+        this.setBounds(0, 0, 1280, 720);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+
+    public void crearBotones(){
         nombre = new JLabel("Nombre: ");
         nombre.setBounds(10, 0, 200, 30);
         nombre.setForeground(new Color(0, 0, 0));
@@ -156,61 +211,72 @@ public class Tablero extends JFrame implements Observer {
         tresCartas.setName("tresCartasTablero");
         tresCartas.addActionListener(controlador);
         add(tresCartas);
+    }
 
+    public void crearMazoyCartasUbicar(){
         mazo = new JButton();
-        mazo.setBounds(90, 105, 98, 117);
+        mazo.setBounds(90, 103, 98, 117);
         mazo.setIcon(new ImageIcon("images/reversocarta.png"));
-        mazo.setFocusPainted(false);
+        mazo.setBorderPainted(false);
+        mazo.setContentAreaFilled(false);
         mazo.setName("mazoTablero");
         mazo.addActionListener(controlador);
         add(mazo);
 
+        cartaUbicar = new JButton();
+        cartaUbicar.setBounds(300, 103, 98, 117);
+        cartaUbicar.setBorderPainted(false);
+        cartaUbicar.setContentAreaFilled(false);
+        cartaUbicar.setName("cartaUbicar");
+        cartaUbicar.addActionListener(controlador);
+        cartaUbicar.setVisible(false);
+        add(cartaUbicar);
+
+        cartaUbicar3 = new JLabel();
+        cartaUbicar3.setBounds(270, 103, 98, 117);
+        cartaUbicar3.setVisible(false);
+        add(cartaUbicar3);
+
+        cartaUbicar2 = new JLabel();
+        cartaUbicar2.setBounds(240, 103, 98, 117);
+        cartaUbicar2.setVisible(false);
+        add(cartaUbicar2);
+
+    }
+
+    public void crearEscaleras(){
         for (int i = 0; i < 4; i++) {
             JButton boton = new JButton();
             boton.setBounds(590 + (168 * i), 108, 98, 117);
             boton.setIcon(new ImageIcon("images/reversocarta.png"));
-            boton.setFocusPainted(false);
+            boton.setBorderPainted(false);
+            boton.setContentAreaFilled(false);
             boton.setName("escalera" + i);
             boton.addActionListener(controlador);
             add(boton);
             escaleras.add(boton);
         }
-
-
-        add(tablero);
-
-        recargarMazo();
-        recargarEscalera();
-
     }
 
-    @Override
-    public void update() {
-        pilasDeJuego = juego.getPilasJuego();
-        pilasDeEscalera = juego.getPilasEscalera();
-        cartasaUbicar = juego.getCartasaUbicar();
-        mazoVacio = juego.getMazoVacio();
-        puntaje = juego.getPuntacion();
-        movimientosExitosos = juego.getMovimientosExitosos();
-        nombreJugador = juego.getNombre();
-        modoDeJuego = juego.getModoDeJuego();
+    public void crearZonaDeJuego(){
 
-        recargarVentana();
-    }
+        for (int i = 0; i < pilasDeJuego.size(); i++) {
+            ArrayList<JButton> pila = new ArrayList<>();
+            for (int j = 0; j < pilasDeJuego.get(i).getPila().size(); j++) {
+                if(!pilasDeJuego.get(i).getPila().isEmpty()){
+                    JButton boton = new JButton();
+                    boton.setBounds(90 + (168 * i), 247 + (30 * j), 98, 117);
+                    boton.setIcon(new ImageIcon("images/reversocarta.png"));
+                    boton.setBorderPainted(false);
+                    boton.setContentAreaFilled(false);
+                    boton.setName("escalera" + i);
+                    boton.addActionListener(controlador);
+                    add(boton);
+                    pila.add(boton);
+                }
+            }
+        }
 
-    public void recargarVentana() {
-
-        recargarBotonesModo();
-        recargarMazo();
-        recargarEscalera();
-
-    }
-
-    public void crearVentana() {
-        this.setBounds(0, 0, 1280, 720);
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
     }
 
     public void registrarFuente() {
@@ -238,7 +304,7 @@ public class Tablero extends JFrame implements Observer {
         }
     }
 
-    public void recargarMazo() {
+    public void recargarMazoyCartasUbicar() {
 
         if (mazo != null) {
             if (!mazoVacio) {
@@ -247,6 +313,28 @@ public class Tablero extends JFrame implements Observer {
                 mazo.setIcon(new ImageIcon("images/transparente.png"));
             }
         }
+
+        if (cartasaUbicar!=null){
+            if(cartasaUbicar.size()>=1){
+                cartaUbicar.setIcon(cartasaUbicar.get(cartasaUbicar.size()-1).getImagen());
+                cartaUbicar.setVisible(true);
+            }else{
+                cartaUbicar.setVisible(false);
+            }
+            if(cartasaUbicar.size()>=2){
+                cartaUbicar3.setIcon(cartasaUbicar.get(cartasaUbicar.size()-2).getImagen());
+                cartaUbicar3.setVisible(true);
+            }else{
+                cartaUbicar3.setVisible(false);
+            }
+            if(cartasaUbicar.size()>=3){
+                cartaUbicar2.setIcon(cartasaUbicar.get(cartasaUbicar.size()-3).getImagen());
+                cartaUbicar2.setVisible(true);
+            }else{
+                cartaUbicar2.setVisible(false);
+            }
+        }
+
     }
 
     public void recargarEscalera() {

@@ -11,10 +11,16 @@ public class Controlador implements ActionListener {
     private Tablero tablero;
 
     public Controlador(String nombre) {
+        System.out.println("creo controlador");
         this.juego = new Juego(nombre);
         this.tablero = new Tablero(juego,this);
         juego.registerObserver((Observer) tablero);
         tablero.crearVentana();
+        // prueba
+        Carta carta=new Carta(Palo.Treboles,Valor.As);
+        carta.darVuelta();
+        juego.agregaraPila(carta,juego.getPilasEscalera().get(0));
+
     }
 
     public void setearModoUnaCarta(){
@@ -57,6 +63,8 @@ public class Controlador implements ActionListener {
             setearModoTresCartas();
         }else if(boton.getName().equals("mazoTablero")){
             juego.pedirCartas();
+        }else if(boton.getName().equals("cartaUbicar")){
+
         }
 
 
