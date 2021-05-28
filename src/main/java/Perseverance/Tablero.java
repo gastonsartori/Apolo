@@ -353,7 +353,6 @@ public class Tablero extends JFrame implements Observer {
                 cartasDeJuego.get(i).get(j).setIcon(pilasDeJuego.get(i).getPila().get(12-j).getImagen());
             }
             if(pilasDeJuego.get(i).getPila().isEmpty()){
-                System.out.println("vacia");
                 cartasDeJuego.get(i).get(12).setVisible(true);
                 cartasDeJuego.get(i).get(12).setIcon(new ImageIcon("images/transparenteEscalera.png"));
             }

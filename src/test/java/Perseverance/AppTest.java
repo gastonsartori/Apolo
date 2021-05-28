@@ -236,8 +236,7 @@ public class AppTest
     @Test //017
     public void testPuntuacion(){
         Juego juego = new Juego("jugador");
-        ArrayList<Carta> carta = new ArrayList<>();
-        carta.add(new Carta(Palo.Diamantes,Valor.As));
+        Carta carta = new Carta(Palo.Diamantes,Valor.As);
         juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
         juego.actPuntacion();
 
