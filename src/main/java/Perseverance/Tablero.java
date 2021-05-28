@@ -76,14 +76,10 @@ public class Tablero extends JFrame implements Observer {
         crearEscaleras();
         crearZonaDeJuego();
 
-
-
-
         add(tablero);
 
         recargarMazoyCartasUbicar();
         recargarEscalera();
-
 
     }
 
@@ -111,6 +107,8 @@ public class Tablero extends JFrame implements Observer {
         recargarBotonesModo();
         recargarMazoyCartasUbicar();
         recargarEscalera();
+        recargarZonaDeJuego();
+        crearZonaDeJuego();
 
     }
 
@@ -250,7 +248,6 @@ public class Tablero extends JFrame implements Observer {
         for (int i = 0; i < 4; i++) {
             JButton boton = new JButton();
             boton.setBounds(590 + (168 * i), 108, 98, 117);
-            boton.setIcon(new ImageIcon("images/reversocarta.png"));
             boton.setBorderPainted(false);
             boton.setContentAreaFilled(false);
             boton.setName("escalera" + i);
@@ -261,19 +258,28 @@ public class Tablero extends JFrame implements Observer {
     }
 
     public void crearZonaDeJuego(){
-
         for (int i = 0; i < pilasDeJuego.size(); i++) {
             ArrayList<JButton> visibles = new ArrayList<>();
             ArrayList<JLabel> noVisibles = new ArrayList<>();
-            for (int j = pilasDeJuego.get(i).getPila().size()-1; j >= 0; j--) {
-                if(!pilasDeJuego.get(i).getPila().isEmpty()){
+            if(pilasDeJuego.get(i).getPila().isEmpty()) {
+                JButton cartaVisible = new JButton();
+                cartaVisible.setBounds(89 + (168 * i), 245 , 98, 117);
+                cartaVisible.setIcon(new ImageIcon("images/transparenteEscalera.png"));
+                cartaVisible.setBorderPainted(false);
+                cartaVisible.setContentAreaFilled(false);
+                cartaVisible.setName("vacia" + i);
+                cartaVisible.addActionListener(controlador);
+                add(cartaVisible);
+                visibles.add(cartaVisible);
+            }else{
+                for (int j = pilasDeJuego.get(i).getPila().size()-1; j >= 0; j--) {
                     if(pilasDeJuego.get(i).getPila().get(j).isVisible()) {
                         JButton cartaVisible = new JButton();
                         cartaVisible.setBounds(89 + (168 * i), 245 + (22 * j), 98, 117);
                         cartaVisible.setIcon(pilasDeJuego.get(i).getPila().get(j).getImagen());
                         cartaVisible.setBorderPainted(false);
                         cartaVisible.setContentAreaFilled(false);
-                        cartaVisible.setName("escalera" + i);
+                        cartaVisible.setName("juego" + i + j );
                         cartaVisible.addActionListener(controlador);
                         add(cartaVisible);
                         visibles.add(cartaVisible);
@@ -281,7 +287,6 @@ public class Tablero extends JFrame implements Observer {
                         JLabel cartaNoVisible = new JLabel();
                         cartaNoVisible.setBounds(89 + (168 * i), 245 + (22 * j), 98, 117);
                         cartaNoVisible.setIcon(pilasDeJuego.get(i).getPila().get(j).getImagen());
-                        cartaUbicar.setVisible(true);
                         add(cartaNoVisible);
                         noVisibles.add(cartaNoVisible);
                     }
@@ -361,4 +366,19 @@ public class Tablero extends JFrame implements Observer {
             }
         }
     }
+
+    public void recargarZonaDeJuego() {
+        for (int i = 0; i < 7; i++) {
+            int visibles = cartasVisibles.get(i).size();
+            for (int j = 0; j < visibles; j++) {
+                getContentPane().remove(cartasVisibles.get(i).get(j));
+            }
+            int noVisibles = cartasNoVisibles.get(i).size();
+            for (int j = 0; j < noVisibles; j++) {
+                getContentPane().remove(cartasNoVisibles.get(i).get(j));
+            }
+        }
+    }
+
+
 }

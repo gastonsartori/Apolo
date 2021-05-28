@@ -70,7 +70,9 @@ public class PilaEnZonaDeJuego extends PilaDeCartas{
     }
 
     public void voltearUltimaCarta(){
-        getUltimaCarta().darVuelta();
+        if(getUltimaCarta()!=null) {
+            getUltimaCarta().darVuelta();
+        }
     }
 
 

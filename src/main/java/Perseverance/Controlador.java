@@ -35,7 +35,6 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println("evento");
         JButton boton = (JButton) e.getSource();
         if(boton.getName().equals("nuevoJuegoTablero")){
             int confirmed = JOptionPane.showConfirmDialog(null,
@@ -66,7 +65,11 @@ public class Controlador implements ActionListener {
         }else if(boton.getName().equals("cartaUbicar")){
 
         }
+        for (int i = 0; i < 4; i++) {
+            if(boton.getName().equals("escalera"+i)){
 
+            }
+        }
 
     }
 }

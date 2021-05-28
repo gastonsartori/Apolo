@@ -15,6 +15,7 @@ public class Juego implements Subject{
     private int movimientosExitosos;
     private String nombre;
     private int bonificacionDeTiempo;
+    private Carta cartaSeleccionada;
 
     private ArrayList<Observer> observers;
 
@@ -33,6 +34,7 @@ public class Juego implements Subject{
         bonificacionDeTiempo=1000;
         actPuntacion();
         observers=new ArrayList<>();
+        cartaSeleccionada=null;
     }
 
     //GETTERS
@@ -58,13 +60,15 @@ public class Juego implements Subject{
 
     public String getNombre() { return nombre; }
 
+    public Carta getCartaSeleccionada() { return cartaSeleccionada; }
+
     //
 
     public void crearPilasDeJuego(){
         for (int i = 1; i < 8; i++) {
             PilaEnZonaDeJuego pila=new PilaEnZonaDeJuego();
             ArrayList<Carta> cartas= new ArrayList<>();
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i-1; j++) {
                 cartas.add(mazo.getUltimaCarta());
                 mazo.quitarUltimaCarta();
             }
@@ -104,7 +108,6 @@ public class Juego implements Subject{
         int cantidadDeCartas=cartasaUbicar.size();
         for (int i = 0; i < cantidadDeCartas; i++) {
             mazo.getMazo().add(ubicarCarta());
-            ubicarCarta().darVuelta();
             cartaUbicada();
         }
     }
@@ -158,7 +161,6 @@ public class Juego implements Subject{
         this.modoDeJuego = modoDeJuego;
         notifyObservers();
     }
-
 
     //observer
 
