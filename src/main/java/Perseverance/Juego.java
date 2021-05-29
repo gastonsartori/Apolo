@@ -141,72 +141,67 @@ public class Juego implements Subject{
             if (pilasJuego.get(i).getPila().get(j).isVisible()) {
                 if (cartaSeleccionada == null && cartasSeleccionadas == null) {  // si no tengo nada seleccionado
                     if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, selecciono solo esa
-                        cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
-                        cartasSeleccionadas = null;
-                        origen = pilasJuego.get(i).getPila();
-                        System.out.println(cartaSeleccionada.toString());
+                        seleccionarCarta(i);
                     } else {                                                       //si no, selecciono a partir de esa, hacia abajo
                         for (int k = j; k < pilasJuego.get(i).getCartasRestantes(); k++) {
-                            System.out.println(pilasJuego.get(i).getPila().get(k).toString());
-                            cartas.add(pilasJuego.get(i).getPila().get(k));
-                            cartasSeleccionadas = cartas;
-                            cartaSeleccionada = null;
-                            origen = pilasJuego.get(i).getPila();
+                            seleccionarCartas(i,k,cartas);
                         }
                     }
-                } else if (cartasSeleccionadas == null) {                              // si tenia seleccionada solo una carta
-                    if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
-                        agregaraPila(cartaSeleccionada,pilasJuego.get(i));
-                        origen.remove(cartaSeleccionada);
-                        notifyObservers();
-                        cartaSeleccionada = null;
-                    }else{
-                        cartaSeleccionada=null;
-                        origen=null;
-                    }
-                } else {      // si tenia seleccionada varias
-                    if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
-                        agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
-                        origen.removeAll(cartasSeleccionadas);
-                        notifyObservers();
-                        cartasSeleccionadas = null;
-                    }else{
-                        cartasSeleccionadas=null;
-                        origen=null;
-                    }
+                } else{                              // si tenia seleccionada solo una carta
+                    intentarMovimiento(i);
                 }
             } else {
                 if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, la doy vuelta
-                    pilasJuego.get(i).getPila().get(j).darVuelta();
-                    notifyObservers();
+                    darVueltaUltima(i,j);
                 }
             }
         }else{
             if(cartaSeleccionada != null || cartasSeleccionadas != null){
-                if(cartasSeleccionadas==null){
-                    if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
-                        agregaraPila(cartaSeleccionada,pilasJuego.get(i));
-                        origen.remove(cartaSeleccionada);
-                        notifyObservers();
-                        cartaSeleccionada = null;
-                    }else{
-                        cartaSeleccionada=null;
-                        origen=null;
-                    }
-                }else {      // si tenia seleccionada varias
-                    if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
-                        agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
-                        origen.removeAll(cartasSeleccionadas);
-                        notifyObservers();
-                        cartasSeleccionadas = null;
-                    }else{
-                        cartasSeleccionadas=null;
-                        origen=null;
-                    }
-                }
+                intentarMovimiento(i);
             }
         }
 }
+
+    public void seleccionarCarta(int i){
+        cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
+        cartasSeleccionadas = null;
+        origen = pilasJuego.get(i).getPila();
+    }
+    public void seleccionarCartas(int i, int k, ArrayList<Carta> cartas){
+        cartas.add(pilasJuego.get(i).getPila().get(k));
+        cartasSeleccionadas = cartas;
+        cartaSeleccionada = null;
+        origen = pilasJuego.get(i).getPila();
+    }
+    public void intentarMovimiento(int i){
+        if(cartasSeleccionadas==null){
+            if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
+                agregaraPila(cartaSeleccionada,pilasJuego.get(i));
+                origen.remove(cartaSeleccionada);
+                notifyObservers();
+                cartaSeleccionada = null;
+            }else{
+                cartaSeleccionada=null;
+                origen=null;
+            }
+        }else {      // si tenia seleccionada varias
+            if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
+                agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
+                origen.removeAll(cartasSeleccionadas);
+                notifyObservers();
+                cartasSeleccionadas = null;
+            }else{
+                cartasSeleccionadas=null;
+                origen=null;
+            }
+        }
+    }
+    public void darVueltaUltima(int i,int j){
+        pilasJuego.get(i).getPila().get(j).darVuelta();
+        notifyObservers();
+    }
+
+
 
 
 
