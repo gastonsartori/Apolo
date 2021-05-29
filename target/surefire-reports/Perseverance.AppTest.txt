@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: Perseverance.AppTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.163 s - in Perseverance.AppTest
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.204 s - in Perseverance.AppTest
