@@ -165,34 +165,49 @@ public class Juego implements Subject{
     public void seleccionarCarta(int i){
         cartaSeleccionada = pilasJuego.get(i).getUltimaCarta();
         cartasSeleccionadas = null;
+        cartaSeleccionada.seleccionar();
         origen = pilasJuego.get(i).getPila();
     }
     public void seleccionarCartas(int i, int k, ArrayList<Carta> cartas){
+        pilasJuego.get(i).getPila().get(k).seleccionar();
         cartas.add(pilasJuego.get(i).getPila().get(k));
         cartasSeleccionadas = cartas;
         cartaSeleccionada = null;
         origen = pilasJuego.get(i).getPila();
     }
+
     public void intentarMovimiento(int i){
         if(cartasSeleccionadas==null){
             if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
                 agregaraPila(cartaSeleccionada,pilasJuego.get(i));
                 origen.remove(cartaSeleccionada);
-                notifyObservers();
+                cartaSeleccionada.deseleccionar();
                 cartaSeleccionada = null;
+                origen=null;
+                notifyObservers();
             }else{
+                cartaSeleccionada.deseleccionar();
                 cartaSeleccionada=null;
                 origen=null;
+                notifyObservers();
             }
         }else {      // si tenia seleccionada varias
             if (pilasJuego.get(i).movimientoValido(cartasSeleccionadas)) {
                 agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
                 origen.removeAll(cartasSeleccionadas);
-                notifyObservers();
+                for (int j = 0; j < cartasSeleccionadas.size(); j++) {
+                    cartasSeleccionadas.get(i).deseleccionar();
+                }
                 cartasSeleccionadas = null;
+                origen=null;
+                notifyObservers();
             }else{
+                for (int j = 0; j < cartasSeleccionadas.size(); j++) {
+                    cartasSeleccionadas.get(i).deseleccionar();
+                }
                 cartasSeleccionadas=null;
                 origen=null;
+                notifyObservers();
             }
         }
     }
@@ -200,6 +215,7 @@ public class Juego implements Subject{
         pilasJuego.get(i).getPila().get(j).darVuelta();
         notifyObservers();
     }
+
 
 
 

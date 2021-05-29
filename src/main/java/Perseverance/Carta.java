@@ -31,6 +31,13 @@ public class Carta {
         }
     }
 
+    public void seleccionar(){
+        this.imagen = new ImageIcon("images/" + this.toString() + "Seleccionada.png");
+    }
+    public void deseleccionar(){
+        this.imagen = new ImageIcon("images/" + this.toString() + ".png");
+    }
+
     @Override
     public String toString() {
         return valor + "de" + palo;
