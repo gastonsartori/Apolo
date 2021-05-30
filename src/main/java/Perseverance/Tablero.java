@@ -29,6 +29,8 @@ public class Tablero extends JFrame implements Observer {
     private JLabel tiempo;
     private JLabel movimientos;
     private JLabel puntuacion;
+    private JLabel movimientosNum;
+    private JLabel puntuacionNum;
 
     private ArrayList<PilaEnZonaDeJuego> pilasDeJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasDeEscalera;
@@ -54,6 +56,9 @@ public class Tablero extends JFrame implements Observer {
         escaleras = new ArrayList<>();
         cartasDeJuego = new ArrayList<>();
         primeraVez=true;
+
+        puntaje = juego.getPuntacion();
+        movimientosExitosos = 0;
 
         update();
 
@@ -93,8 +98,14 @@ public class Tablero extends JFrame implements Observer {
         nombreJugador = juego.getNombre();
         modoDeJuego = juego.getModoDeJuego();
 
+
+
+
+
         if(!primeraVez){
             System.out.println("RECARGO");
+            movimientosNum.setText(String.valueOf(movimientosExitosos));
+            puntuacionNum.setText(String.valueOf(juego.getPuntacion()));
             recargarVentana();
         }
         primeraVez=false;
@@ -131,16 +142,28 @@ public class Tablero extends JFrame implements Observer {
         add(tiempo);
 
         movimientos = new JLabel("Movimientos Exitosos: ");
-        movimientos.setBounds(10, 60, 400, 30);
+        movimientos.setBounds(10, 60, 200, 30);
         movimientos.setForeground(new Color(0, 0, 0));
         movimientos.setFont(fuente);
         add(movimientos);
 
+        movimientosNum = new JLabel(String.valueOf(movimientosExitosos));
+        movimientosNum.setBounds(210, 60, 100, 30);
+        movimientosNum.setForeground(new Color(0, 0, 0));
+        movimientosNum.setFont(fuente);
+        add(movimientosNum);
+
         puntuacion = new JLabel("Puntuación: ");
-        puntuacion.setBounds(410, 60, 200, 30);
+        puntuacion.setBounds(410, 60, 100, 30);
         puntuacion.setForeground(new Color(0, 0, 0));
         puntuacion.setFont(fuente);
         add(puntuacion);
+
+        puntuacionNum = new JLabel(String.valueOf(juego.getPuntacion()));
+        puntuacionNum.setBounds(520, 60, 100, 30);
+        puntuacionNum.setForeground(new Color(0, 0, 0));
+        puntuacionNum.setFont(fuente);
+        add(puntuacionNum);
 
         jugador = new JLabel(nombreJugador);
         jugador.setBounds(100, 0, 200, 30);

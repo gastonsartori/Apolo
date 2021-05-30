@@ -49,6 +49,10 @@ public class Juego implements Subject{
 
     public int getPuntacion() { return puntuacion; }
 
+    public int getPuntacionTiempo(){return bonificacionDeTiempo;};
+
+    public int getPuntacionMovimientos(){return movimientosaEscaleras*10;};
+
     public int getMovimientosExitosos() { return movimientosExitosos; }
 
     public int getMovimientosaEscaleras() { return movimientosaEscaleras; }
@@ -139,7 +143,7 @@ public class Juego implements Subject{
             deseleccionCarta();
             notifyObservers();
         }
-        else if (cartaSeleccionada == null){
+        else if (cartaSeleccionada == null && !pilasEscalera.get(i).getPila().isEmpty()){
             seleccionCarta(pilasEscalera.get(i).getUltimaCarta());
             origen = pilasEscalera.get(i).getPila();
             notifyObservers();

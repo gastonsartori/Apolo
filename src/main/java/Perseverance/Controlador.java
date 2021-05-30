@@ -41,7 +41,9 @@ public class Controlador implements ActionListener {
         }else if(boton.getName().equals("reglasTablero")){
             new Reglas().crearVentana();
         }else if(boton.getName().equals("estadisticasTablero")){
-
+            Estadisticas estadisticas = new Estadisticas(juego);
+                    estadisticas.crearVentana();
+            juego.registerObserver((Observer) estadisticas);
         }else if(boton.getName().equals("menuPrincipalTablero")){
             int confirmed = JOptionPane.showConfirmDialog(null,
                     "¿Estas seguro que queres salir?", "Salir",

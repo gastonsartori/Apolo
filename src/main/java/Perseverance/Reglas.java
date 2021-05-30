@@ -38,7 +38,6 @@ public class Reglas extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
     public void leerArchivo() {
         File archivo = new File("reglas.txt");

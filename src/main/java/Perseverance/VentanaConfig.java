@@ -26,7 +26,6 @@ public class VentanaConfig extends JFrame implements ActionListener {
         menuPrincipal = menu;
 
         setLayout(null);
-        setResizable(false);
         setTitle("Jugar");
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
