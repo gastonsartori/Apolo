@@ -8,12 +8,14 @@ public class Carta {
     private final Palo palo;
     private boolean visible;
     private ImageIcon imagen;
+    private boolean movidaEscalera;
 
     public Carta(Palo palo, Valor valor){
         this.valor = valor;
         this.palo = palo;
         this.visible=false;
         imagen = new ImageIcon("images/reversocarta.png");
+        movidaEscalera=false;
     }
 
     public Valor getValor() { return valor; }
@@ -23,6 +25,8 @@ public class Carta {
     public boolean isVisible() { return visible; }
 
     public ImageIcon getImagen() { return imagen; }
+
+    public boolean isMovidaEscalera() { return movidaEscalera; }
 
     public void darVuelta(){
         if(!visible) {
@@ -38,6 +42,9 @@ public class Carta {
     public void deseleccionar(){
         System.out.println("deselecciono");
         this.imagen = new ImageIcon("images/" + this.toString() + ".png");
+    }
+    public void moveraEscalera(){
+        movidaEscalera=true;
     }
 
     @Override

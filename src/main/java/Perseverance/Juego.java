@@ -252,7 +252,6 @@ public class Juego implements Subject{
         if(pila.movimientoValido(cartas)){
             pila.agregarCartas(cartas);
             movimientosExitosos++;
-
             notifyObservers();
         }
     }
@@ -262,8 +261,10 @@ public class Juego implements Subject{
         cartas.add(carta);
         agregaraPila(cartas,pila);
         if(pila.getTipo().equals("escalera")) {
-            movimientosaEscaleras++;
-            System.out.println("mov a escalera " + movimientosaEscaleras);
+            if(!carta.isMovidaEscalera()) {
+                movimientosaEscaleras++;
+                carta.moveraEscalera();
+            }
             actPuntacion();
             if(cartas.get(0).getValor() == Valor.K){
                 if(comprobarWin()){
