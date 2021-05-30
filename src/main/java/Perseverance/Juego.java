@@ -91,6 +91,16 @@ public class Juego implements Subject{
     //METODOS DE CARTAS A UBICAR, PEDIR NUEVAS, O UBICARLAS
 
     public void pedirCartas(){
+        if(cartaSeleccionada!=null){
+            deseleccionCarta();
+        }else if(cartasSeleccionadas!=null){
+            for (int j = 0; j < cartasSeleccionadas.size(); j++) {
+                cartasSeleccionadas.get(j).deseleccionar();
+            }
+            cartasSeleccionadas=null;
+            origen=null;
+            notifyObservers();
+        }
         if(mazo.getMazo().isEmpty()){
             reiniciarMazo();
         }
@@ -117,20 +127,22 @@ public class Juego implements Subject{
     }
 
     public void seleccionCartaUbicar(){
-        cartaSeleccionada = ubicarCarta();
+        seleccionCarta(ubicarCarta());
         origen = cartasaUbicar;
+        notifyObservers();
     }
 
     public void seleccionEscalera(int i){
         if(cartaSeleccionada != null && pilasEscalera.get(i).movimientoValido(cartaSeleccionada)){
             agregaraPila(cartaSeleccionada,pilasEscalera.get(i));
             origen.remove(cartaSeleccionada);
+            deseleccionCarta();
             notifyObservers();
-            cartaSeleccionada = null;
         }
         else if (cartaSeleccionada == null){
-            cartaSeleccionada = pilasEscalera.get(i).getUltimaCarta();
+            seleccionCarta(pilasEscalera.get(i).getUltimaCarta());
             origen = pilasEscalera.get(i).getPila();
+            notifyObservers();
         }
     }
     public void seleccionJuego(int i,int j){
@@ -142,9 +154,11 @@ public class Juego implements Subject{
                 if (cartaSeleccionada == null && cartasSeleccionadas == null) {  // si no tengo nada seleccionado
                     if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, selecciono solo esa
                         seleccionarCarta(i);
+                        notifyObservers();
                     } else {                                                       //si no, selecciono a partir de esa, hacia abajo
                         for (int k = j; k < pilasJuego.get(i).getCartasRestantes(); k++) {
                             seleccionarCartas(i,k,cartas);
+                            notifyObservers();
                         }
                     }
                 } else{                              // si tenia seleccionada solo una carta
@@ -153,6 +167,9 @@ public class Juego implements Subject{
             } else {
                 if (pilasJuego.get(i).getCartasRestantes() - 1 == j) {      //si es la ultima carta, la doy vuelta
                     darVueltaUltima(i,j);
+                    if(cartaSeleccionada!=null){
+                        deseleccionCarta();
+                    }
                 }
             }
         }else{
@@ -181,13 +198,11 @@ public class Juego implements Subject{
             if (pilasJuego.get(i).movimientoValido(cartaSeleccionada)) {   //verifico movimiento
                 agregaraPila(cartaSeleccionada,pilasJuego.get(i));
                 origen.remove(cartaSeleccionada);
-                cartaSeleccionada.deseleccionar();
-                cartaSeleccionada = null;
+                deseleccionCarta();
                 origen=null;
                 notifyObservers();
             }else{
-                cartaSeleccionada.deseleccionar();
-                cartaSeleccionada=null;
+                deseleccionCarta();
                 origen=null;
                 notifyObservers();
             }
@@ -203,7 +218,7 @@ public class Juego implements Subject{
                 notifyObservers();
             }else{
                 for (int j = 0; j < cartasSeleccionadas.size(); j++) {
-                    cartasSeleccionadas.get(i).deseleccionar();
+                    cartasSeleccionadas.get(j).deseleccionar();
                 }
                 cartasSeleccionadas=null;
                 origen=null;
@@ -216,9 +231,14 @@ public class Juego implements Subject{
         notifyObservers();
     }
 
-
-
-
+    public void seleccionCarta(Carta carta){
+        cartaSeleccionada=carta;
+        cartaSeleccionada.seleccionar();
+    }
+    public void deseleccionCarta(){
+        cartaSeleccionada.deseleccionar();
+        cartaSeleccionada=null;
+    }
 
 
     //METODOS DE AGREGAR A PILAS
