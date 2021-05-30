@@ -131,9 +131,15 @@ public class Juego implements Subject{
     }
 
     public void seleccionCartaUbicar(){
-        seleccionCarta(ubicarCarta());
-        origen = cartasaUbicar;
-        notifyObservers();
+        if(cartaSeleccionada==null){
+            seleccionCarta(ubicarCarta());
+            origen = cartasaUbicar;
+            notifyObservers();
+        }else{
+            deseleccionCarta();
+            origen=null;
+            notifyObservers();
+        }
     }
 
     public void seleccionEscalera(int i){
@@ -242,7 +248,8 @@ public class Juego implements Subject{
     }
     public void deseleccionCarta(){
         cartaSeleccionada.deseleccionar();
-        cartaSeleccionada=null;
+        cartaSeleccionada = null;
+
     }
 
 
