@@ -71,7 +71,7 @@ public class Tablero extends JFrame implements Observer {
 
         ImageIcon tableropng = new ImageIcon("images/tablero.png");
         tablero = new JLabel(tableropng);
-        tablero.setBounds(0, 0, 1280, 720);
+        tablero.setBounds(0, 0, 1280, 960);
 
 
         crearBotones();
@@ -122,7 +122,7 @@ public class Tablero extends JFrame implements Observer {
     }
 
     public void crearVentana() {
-        this.setBounds(0, 0, 1280, 720);
+        this.setBounds(0, 0, 1280, 830);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
