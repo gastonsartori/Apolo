@@ -67,7 +67,7 @@ public class Controlador implements ActionListener {
             }
         }
         for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 13; j++) {
+            for (int j = 0; j < 19; j++) {
                 if(boton.getName().equals("juego"+i+j)){
                     juego.seleccionJuego(i,j);
                 }
