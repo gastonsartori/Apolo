@@ -215,7 +215,7 @@ public class Juego implements Subject{
                 agregaraPila(cartasSeleccionadas,pilasJuego.get(i));
                 origen.removeAll(cartasSeleccionadas);
                 for (int j = 0; j < cartasSeleccionadas.size(); j++) {
-                    cartasSeleccionadas.get(i).deseleccionar();
+                    cartasSeleccionadas.get(j).deseleccionar();
                 }
                 cartasSeleccionadas = null;
                 origen=null;
