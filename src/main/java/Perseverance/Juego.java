@@ -137,9 +137,11 @@ public class Juego implements Subject{
     }
 
     public void seleccionEscalera(int i){
-        if(cartaSeleccionada != null && pilasEscalera.get(i).movimientoValido(cartaSeleccionada)){
-            agregaraPila(cartaSeleccionada,pilasEscalera.get(i));
-            origen.remove(cartaSeleccionada);
+        if(cartaSeleccionada != null){
+            if(pilasEscalera.get(i).movimientoValido(cartaSeleccionada)) {
+                agregaraPila(cartaSeleccionada, pilasEscalera.get(i));
+                origen.remove(cartaSeleccionada);
+            }
             deseleccionCarta();
             notifyObservers();
         }
@@ -234,7 +236,6 @@ public class Juego implements Subject{
         pilasJuego.get(i).getPila().get(j).darVuelta();
         notifyObservers();
     }
-
     public void seleccionCarta(Carta carta){
         cartaSeleccionada=carta;
         cartaSeleccionada.seleccionar();
