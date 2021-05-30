@@ -281,7 +281,7 @@ public class Tablero extends JFrame implements Observer {
     public void crearZonaDeJuego(){
         for (int i = 0; i < pilasDeJuego.size(); i++) {
             ArrayList<JButton> cartas = new ArrayList<>();
-            for (int j = 12; j >= 0; j--) {
+            for (int j = 18; j >= 0; j--) {
                 JButton boton = new JButton();
                 boton.setBounds(89 + (168 * i), 245 + (22 * j), 98, 117);
                 boton.setIcon(new ImageIcon("images/reversocarta.png"));
@@ -368,16 +368,16 @@ public class Tablero extends JFrame implements Observer {
 
     public void recargarZonaDeJuego() {
         for (int i = 0; i < 7; i++) { //pila por pila
-            for (int j = 0; j < 13-pilasDeJuego.get(i).getPila().size(); j++) {
+            for (int j = 0; j < 19-pilasDeJuego.get(i).getPila().size(); j++) {
                 cartasDeJuego.get(i).get(j).setVisible(false);
             }
-            for (int j = 13-pilasDeJuego.get(i).getPila().size(); j < 13; j++) {
+            for (int j = 19-pilasDeJuego.get(i).getPila().size(); j < 19; j++) {
                 cartasDeJuego.get(i).get(j).setVisible(true);
-                cartasDeJuego.get(i).get(j).setIcon(pilasDeJuego.get(i).getPila().get(12-j).getImagen());
+                cartasDeJuego.get(i).get(j).setIcon(pilasDeJuego.get(i).getPila().get(18-j).getImagen());
             }
             if(pilasDeJuego.get(i).getPila().isEmpty()){
-                cartasDeJuego.get(i).get(12).setVisible(true);
-                cartasDeJuego.get(i).get(12).setIcon(new ImageIcon("images/transparenteEscalera.png"));
+                cartasDeJuego.get(i).get(18).setVisible(true);
+                cartasDeJuego.get(i).get(18).setIcon(new ImageIcon("images/transparenteEscalera.png"));
             }
         }
 
