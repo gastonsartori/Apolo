@@ -16,6 +16,9 @@ public class VentanaConfig extends JFrame implements ActionListener {
     private JLabel unaCartaText;
     private JLabel tresCartasText;
     private JLabel nombreText;
+    private JLabel ayuda1;
+    private JLabel ayuda2;
+    private JLabel modo;
     private JButton aceptar;
     private JButton atras;
     private Font fuente;
@@ -76,6 +79,21 @@ public class VentanaConfig extends JFrame implements ActionListener {
         atras.setBackground(new Color(230,230,230));
         atras.setFont(fuente);
         add(atras);
+
+        ayuda1 = new JLabel("Para jugar, clickee la carta a mover para seleccionarla.");
+        ayuda1.setBounds(50,170,450,25);
+        ayuda1.setFont(fuente);
+        add(ayuda1);
+
+        ayuda2 = new JLabel("Luego, clickee en la pila a la cual desea moverla");
+        ayuda2.setBounds(75,195,450,25);
+        ayuda2.setFont(fuente);
+        add(ayuda2);
+
+        modo = new JLabel("Modo de juego: (cartas entregadas por el mazo)");
+        modo.setBounds(30,70,450,25);
+        modo.setFont(fuente);
+        add(modo);
 
     }
 
