@@ -88,7 +88,7 @@ public class Menu extends JFrame implements ActionListener {
             new Reglas().crearVentana();
         }
         else if(boton.equals(puntajes)){
-            //PANTALLA PUNTAJES
+            new PuntajeHistorico().crearVentana();
         }
         else if(boton.equals(salir)){
             dispose();
