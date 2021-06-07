@@ -69,7 +69,7 @@ public class Juego implements Subject{
 
     public int getPuntacionTiempo(){return bonificacionDeTiempo;};
 
-    public int getPuntacionMovimientos(){return movimientosaEscaleras*10;};
+    public int getPuntacionMovimientos(){return movimientosaEscaleras*100;};
 
     public int getMovimientosExitosos() { return movimientosExitosos; }
 
@@ -96,6 +96,24 @@ public class Juego implements Subject{
     public Timer getTimer() { return timer; }
 
     public TimerTask getTask() { return task; }
+
+    public int getCartasMazo(){
+        return mazo.getCartasRestantes() + cartasaUbicar.size();
+    }
+    public int getCartasJuego(){
+        int cont=0;
+        for (int i = 0; i < 7; i++) {
+            cont+=pilasJuego.get(i).getPila().size();
+        }
+        return cont;
+    }
+    public int getCartasEscalera(){
+        int cont=0;
+        for (int i = 0; i < 4; i++) {
+            cont+=pilasEscalera.get(i).getPila().size();
+        }
+        return cont;
+    }
 
     //
 
@@ -352,7 +370,7 @@ public class Juego implements Subject{
         }else if(minutos==10){
             bonificacionDeTiempo=0;
         }
-        puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;
+        puntuacion=bonificacionDeTiempo + getPuntacionMovimientos();
     }
 
     //strategy
