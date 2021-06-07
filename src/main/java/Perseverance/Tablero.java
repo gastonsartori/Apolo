@@ -114,8 +114,16 @@ public class Tablero extends JFrame implements Observer {
         primeraVez=false;
 
         if(win){
-            JOptionPane.showMessageDialog(null, "Felicidades, has ganado el juego!");
-            System.exit(0);
+            juego.getTask().cancel();
+            int confirmed = JOptionPane.showConfirmDialog(null,"¿Desea volver al menu principal?"
+                    , "Felicidades, has ganado el juego!",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirmed == JOptionPane.YES_OPTION) {
+                new Menu().crearVentana();
+                dispose();
+            }else{
+                System.exit(0);
+            }
         }
     }
 

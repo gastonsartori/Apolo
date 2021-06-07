@@ -93,6 +93,10 @@ public class Juego implements Subject{
 
     public boolean isWin() { return win; }
 
+    public Timer getTimer() { return timer; }
+
+    public TimerTask getTask() { return task; }
+
     //
 
     public void crearPilasDeJuego(){
@@ -325,7 +329,6 @@ public class Juego implements Subject{
                 }
             }
         }
-        win=true;
     }
 
     public boolean comprobarWin(){
