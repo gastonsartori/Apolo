@@ -171,10 +171,19 @@ public class Juego implements Subject{
             deseleccionCarta();
             notifyObservers();
         }
-        else if (cartaSeleccionada == null && !pilasEscalera.get(i).getPila().isEmpty()){
-            seleccionCarta(pilasEscalera.get(i).getUltimaCarta());
-            origen = pilasEscalera.get(i).getPila();
-            notifyObservers();
+        else{
+            if(cartasSeleccionadas != null){
+                for (int j = 0; j < cartasSeleccionadas.size(); j++) {
+                    cartasSeleccionadas.get(j).deseleccionar();
+                }
+                cartasSeleccionadas=null;
+                origen=null;
+                notifyObservers();
+            } else if (!pilasEscalera.get(i).getPila().isEmpty()){
+                seleccionCarta(pilasEscalera.get(i).getUltimaCarta());
+                origen = pilasEscalera.get(i).getPila();
+                notifyObservers();
+            }
         }
     }
 
