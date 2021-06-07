@@ -24,6 +24,7 @@ public class Juego implements Subject{
     private int minutos;
     private Timer timer;
     private TimerTask task;
+    private boolean win;
 
     private ArrayList<Observer> observers;
 
@@ -54,7 +55,7 @@ public class Juego implements Subject{
             }
         };
         timer.schedule(task,10,1000);
-
+        win=false;
     }
 
     //GETTERS
@@ -89,6 +90,8 @@ public class Juego implements Subject{
     public int getSegundos() { return segundos; }
 
     public int getMinutos() { return minutos; }
+
+    public boolean isWin() { return win; }
 
     //
 
@@ -318,11 +321,11 @@ public class Juego implements Subject{
             actPuntacion();
             if(cartas.get(0).getValor() == Valor.K){
                 if(comprobarWin()){
-                    win();
+                    win=true;
                 }
             }
         }
-
+        win=true;
     }
 
     public boolean comprobarWin(){
@@ -338,10 +341,7 @@ public class Juego implements Subject{
         return false;
     }
 
-    public void win(){
-        JOptionPane.showMessageDialog(null, "Felicidades, has ganado el juego!");
-        System.exit(0);
-    }
+
 
     public void actPuntacion(){
         if(minutos==5){

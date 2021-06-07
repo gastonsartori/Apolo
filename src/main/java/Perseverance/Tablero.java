@@ -44,7 +44,8 @@ public class Tablero extends JFrame implements Observer {
     private boolean primeraVez;
     private int segundos;
     private int minutos;
-    private String formatoTiempo;
+    private boolean win;
+
 
     private Juego juego;
     private Controlador controlador;
@@ -60,6 +61,7 @@ public class Tablero extends JFrame implements Observer {
         escaleras = new ArrayList<>();
         cartasDeJuego = new ArrayList<>();
         primeraVez=true;
+        win=false;
 
         puntaje = juego.getPuntacion();
         movimientosExitosos = 0;
@@ -103,11 +105,18 @@ public class Tablero extends JFrame implements Observer {
         modoDeJuego = juego.getModoDeJuego();
         segundos=juego.getSegundos();
         minutos= juego.getMinutos();
+        win=juego.isWin();
+
 
         if(!primeraVez){
             recargarVentana();
         }
         primeraVez=false;
+
+        if(win){
+            JOptionPane.showMessageDialog(null, "Felicidades, has ganado el juego!");
+            System.exit(0);
+        }
     }
 
     public void recargarVentana() {
