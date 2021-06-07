@@ -2,6 +2,8 @@ package Perseverance;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class Juego implements Subject{
 
@@ -18,6 +20,10 @@ public class Juego implements Subject{
     private Carta cartaSeleccionada;
     private ArrayList<Carta> origen;
     private ArrayList<Carta> cartasSeleccionadas;
+    private int segundos;
+    private int minutos;
+    private Timer timer;
+    private TimerTask task;
 
     private ArrayList<Observer> observers;
 
@@ -38,6 +44,17 @@ public class Juego implements Subject{
         observers=new ArrayList<>();
         cartaSeleccionada=null;
         origen = new ArrayList<>();
+        segundos=0;
+        minutos=0;
+        timer=new Timer();
+        task= new TimerTask() {
+            @Override
+            public void run() {
+                incrementarTiempo();
+            }
+        };
+        timer.schedule(task,10,1000);
+
     }
 
     //GETTERS
@@ -69,6 +86,9 @@ public class Juego implements Subject{
 
     public Carta getCartaSeleccionada() { return cartaSeleccionada; }
 
+    public int getSegundos() { return segundos; }
+
+    public int getMinutos() { return minutos; }
 
     //
 
@@ -157,6 +177,7 @@ public class Juego implements Subject{
             notifyObservers();
         }
     }
+
     public void seleccionJuego(int i,int j){
 
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -197,6 +218,7 @@ public class Juego implements Subject{
         cartaSeleccionada.seleccionar();
         origen = pilasJuego.get(i).getPila();
     }
+
     public void seleccionarCartas(int i, int k, ArrayList<Carta> cartas){
         pilasJuego.get(i).getPila().get(k).seleccionar();
         cartas.add(pilasJuego.get(i).getPila().get(k));
@@ -238,20 +260,32 @@ public class Juego implements Subject{
             }
         }
     }
+
     public void darVueltaUltima(int i,int j){
         pilasJuego.get(i).getPila().get(j).darVuelta();
         notifyObservers();
     }
+
     public void seleccionCarta(Carta carta){
         cartaSeleccionada=carta;
         cartaSeleccionada.seleccionar();
     }
+
     public void deseleccionCarta(){
         cartaSeleccionada.deseleccionar();
         cartaSeleccionada = null;
 
     }
 
+    public void incrementarTiempo(){
+        segundos++;
+        if(segundos==60){
+            segundos=0;
+            minutos++;
+        }
+        actPuntacion();
+        notifyObservers();
+    }
 
     //METODOS DE AGREGAR A PILAS
 
@@ -300,7 +334,14 @@ public class Juego implements Subject{
         System.exit(0);
     }
 
-    public void actPuntacion(){ puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;}
+    public void actPuntacion(){
+        if(minutos==5){
+            bonificacionDeTiempo=500;
+        }else if(minutos==10){
+            bonificacionDeTiempo=0;
+        }
+        puntuacion=bonificacionDeTiempo + movimientosaEscaleras*10;
+    }
 
     //strategy
     public void setModoDeJuego(ModoDeJuego modoDeJuego) {

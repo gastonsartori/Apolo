@@ -31,6 +31,7 @@ public class Tablero extends JFrame implements Observer {
     private JLabel puntuacion;
     private JLabel movimientosNum;
     private JLabel puntuacionNum;
+    private JLabel tiempoNum;
 
     private ArrayList<PilaEnZonaDeJuego> pilasDeJuego;
     private ArrayList<PilaEnZonaDeEscalera> pilasDeEscalera;
@@ -41,6 +42,9 @@ public class Tablero extends JFrame implements Observer {
     private String nombreJugador;
     private ModoDeJuego modoDeJuego;
     private boolean primeraVez;
+    private int segundos;
+    private int minutos;
+    private String formatoTiempo;
 
     private Juego juego;
     private Controlador controlador;
@@ -97,15 +101,10 @@ public class Tablero extends JFrame implements Observer {
         movimientosExitosos = juego.getMovimientosExitosos();
         nombreJugador = juego.getNombre();
         modoDeJuego = juego.getModoDeJuego();
-
-
-
-
+        segundos=juego.getSegundos();
+        minutos= juego.getMinutos();
 
         if(!primeraVez){
-            System.out.println("RECARGO");
-            movimientosNum.setText(String.valueOf(movimientosExitosos));
-            puntuacionNum.setText(String.valueOf(juego.getPuntacion()));
             recargarVentana();
         }
         primeraVez=false;
@@ -117,9 +116,12 @@ public class Tablero extends JFrame implements Observer {
         recargarMazoyCartasUbicar();
         recargarEscalera();
         recargarZonaDeJuego();
-
+        movimientosNum.setText(String.valueOf(movimientosExitosos));
+        puntuacionNum.setText(String.valueOf(puntaje));
+        tiempoNum.setText(String.format("%02d",minutos)+ " : " + String.format("%02d",segundos));
 
     }
+
 
     public void crearVentana() {
         this.setBounds(0, 0, 1280, 830);
@@ -136,10 +138,16 @@ public class Tablero extends JFrame implements Observer {
         add(nombre);
 
         tiempo = new JLabel("Tiempo: ");
-        tiempo.setBounds(10, 30, 200, 30);
+        tiempo.setBounds(10, 30, 100, 30);
         tiempo.setForeground(new Color(0, 0, 0));
         tiempo.setFont(fuente);
         add(tiempo);
+
+        tiempoNum = new JLabel(String.format("%02d",minutos)+ " : " + String.format("%02d",segundos));
+        tiempoNum.setBounds(110, 30, 100, 30);
+        tiempoNum.setForeground(new Color(0, 0, 0));
+        tiempoNum.setFont(fuente);
+        add(tiempoNum);
 
         movimientos = new JLabel("Movimientos Exitosos: ");
         movimientos.setBounds(10, 60, 200, 30);
