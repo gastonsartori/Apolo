@@ -6,21 +6,45 @@ public class PilaEnZonaDeEscalera extends PilaDeCartas{
 
     public PilaEnZonaDeEscalera(){
         super();
+        tipo="escalera";
     }
+
     @Override
-    public void agregarCartas(ArrayList<Carta> cartas) {
+    public boolean movimientoValido(ArrayList<Carta> cartas) {
         if (cartas.size() == 1){                                //Si viene solo una carta
             if(pila.isEmpty()) {                                // Si la pila en zona de escalera esta vacia
                 if(cartas.get(0).getValor().ordinal() == 0){     //si la carta es un As
-                    pila.add(cartas.get(0));                     //Agrego la carta a la pila
+                    return true;                               //Agrego la carta a la pila
                 }
             }
             else{                                                                 //Si la pila NO esta vacia
                 if(comprobarPalo(cartas.get(0)) && comprobarValor(cartas.get(0))){ //El palo y valor de la carta es correcto
-                    pila.add(cartas.get(0));                                       //Agrego la carta a la pila
+                    return true;                                       //Agrego la carta a la pila
                 }
             }
         }
+        return false;
+    }
+    public boolean movimientoValido(Carta carta) {
+            if(pila.isEmpty()) {                                // Si la pila en zona de escalera esta vacia
+                if(carta.getValor().ordinal() == 0){     //si la carta es un As
+                    return true;                               //Agrego la carta a la pila
+                }
+            }
+            else{                                                                 //Si la pila NO esta vacia
+                if(comprobarPalo(carta) && comprobarValor(carta)){ //El palo y valor de la carta es correcto
+                    return true;                                       //Agrego la carta a la pila
+                }
+            }
+        return false;
+    }
+
+    @Override
+    public void agregarCartas(ArrayList<Carta> cartas) {
+        pila.add(cartas.get(0));
+    }
+    public void agregarCartas(Carta carta) {
+        pila.add(carta);
     }
 
     @Override
