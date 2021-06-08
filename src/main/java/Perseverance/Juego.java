@@ -338,9 +338,7 @@ public class Juego implements Subject{
         agregaraPila(cartas,pila);
         if(pila.getTipo().equals("escalera")) {
             if(!carta.isMovidaEscalera()) {
-                System.out.println("movi a escalera");
                 movimientosaEscaleras++;
-                System.out.println(movimientosaEscaleras);
                 carta.moveraEscalera();
 
             }
