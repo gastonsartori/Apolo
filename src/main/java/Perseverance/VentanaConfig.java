@@ -103,15 +103,26 @@ public class VentanaConfig extends JFrame implements ActionListener {
 
         if(boton.equals(aceptar)){
             //ACEPTAR
-            if(unaCarta.isSelected()){
-                new Controlador(nombre.getText()).setearModoUnaCarta();
-            }
-            if(tresCartas.isSelected()){
-                new Controlador(nombre.getText()).setearModoTresCartas();
+            if(nombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "No olvide ingresar su nombre","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            } else if(!unaCarta.isSelected() && !tresCartas.isSelected()){
+                JOptionPane.showMessageDialog(null,"No olvide seleccionar un modo de juego","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            } else{
+                if(unaCarta.isSelected()){
+                    Controlador controlador=new Controlador(nombre.getText());
+                    controlador.setearModoUnaCarta();
+                    controlador.abrirTablero();
+
+                }
+                if(tresCartas.isSelected()){
+                    Controlador controlador=new Controlador(nombre.getText());
+                    controlador.setearModoTresCartas();
+                    controlador.abrirTablero();
+                }
+                menuPrincipal.dispose();
+                dispose();
             }
 
-            menuPrincipal.dispose();
-            dispose();
         }
 
         else if(boton.equals(atras)){

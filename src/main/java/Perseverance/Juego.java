@@ -337,8 +337,11 @@ public class Juego implements Subject{
         agregaraPila(cartas,pila);
         if(pila.getTipo().equals("escalera")) {
             if(!carta.isMovidaEscalera()) {
+                System.out.println("movi a escalera");
                 movimientosaEscaleras++;
+                System.out.println(movimientosaEscaleras);
                 carta.moveraEscalera();
+
             }
             actPuntacion();
             if(cartas.get(0).getValor() == Valor.K){
@@ -347,6 +350,7 @@ public class Juego implements Subject{
                 }
             }
         }
+        notifyObservers();
     }
 
     public boolean comprobarWin(){
@@ -368,6 +372,10 @@ public class Juego implements Subject{
         bonificacionDeTiempo=5000-(segundos+minutos*60)*8;
 
         puntuacion=bonificacionDeTiempo + getPuntacionMovimientos();
+    }
+
+    public void detenerTiempo(){
+        task.cancel();
     }
 
     //strategy

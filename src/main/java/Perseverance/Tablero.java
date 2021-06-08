@@ -92,6 +92,22 @@ public class Tablero extends JFrame implements Observer {
 
     }
 
+    public JLabel getTiempoNum() {
+        return tiempoNum;
+    }
+
+    public JLabel getMovimientosNum() {
+        return movimientosNum;
+    }
+
+    public JLabel getPuntuacionNum() {
+        return puntuacionNum;
+    }
+
+    public JButton getMazo() {
+        return mazo;
+    }
+
     @Override
     public void update() {
         pilasDeJuego = juego.getPilasJuego();

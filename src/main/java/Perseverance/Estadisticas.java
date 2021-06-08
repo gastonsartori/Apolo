@@ -180,14 +180,23 @@ public class Estadisticas extends JFrame implements Observer {
         cartasEscNum.setBounds(220,355,300,30);
         add(cartasEscNum);
 
-
-
-
-
-
     }
 
+    public JLabel getPuntTiempo() {
+        return puntTiempo;
+    }
 
+    public JLabel getPuntMov() {
+        return puntMov;
+    }
+
+    public int getPuntTiempoNum() {
+        return puntTiempoNum;
+    }
+
+    public int getPuntMovNum() {
+        return puntMovNum;
+    }
 
     @Override
     public void update() {

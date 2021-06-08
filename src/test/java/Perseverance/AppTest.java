@@ -240,13 +240,61 @@ public class AppTest
         juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
         juego.actPuntacion();
 
-        assertEquals(1100,juego.getPuntacion());
+        assertEquals(5100,juego.getPuntacion());
     }
 
 
     /**
      * Integration tests
      */
+
+    @Test
+    public void testEstadisticas(){
+        Juego juego=new Juego("jugador");
+        Estadisticas estadisticas=new Estadisticas(juego);
+        juego.registerObserver((Observer)estadisticas);
+
+        Carta carta = new Carta(Palo.Diamantes,Valor.As);
+        juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
+        juego.detenerTiempo();
+
+        String puntajeTiempo=String.valueOf(juego.getPuntacionTiempo());
+
+        assertEquals("100",estadisticas.getPuntMov().getText());
+        assertEquals(puntajeTiempo,estadisticas.getPuntTiempo().getText());
+
+    }
+
+    @Test
+    public void testTablero(){
+        Controlador controlador=new Controlador("jugador");
+        Juego juego = controlador.getJuego();
+        Tablero tablero= controlador.getTablero();
+
+        Carta carta = new Carta(Palo.Diamantes,Valor.As);
+        juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
+        juego.detenerTiempo();
+        String tiempo=String.format("%02d",juego.getMinutos())+ " : " + String.format("%02d",juego.getSegundos());
+        String puntuacion=String.valueOf(juego.getPuntacion());
+        //debemos verificar si la informacion de juego, se comunica correctamente a tablero
+
+        assertEquals(tiempo,tablero.getTiempoNum().getText());
+        assertEquals("1",tablero.getMovimientosNum().getText());
+        assertEquals(puntuacion,tablero.getPuntuacionNum().getText());
+
+    }
+
+    @Test
+    public void testTableroyCartas(){
+        Controlador controlador=new Controlador("jugador");
+        Juego juego= controlador.getJuego();
+        Tablero tablero= controlador.getTablero();
+
+        tablero.getMazo().doClick();
+
+        assertEquals(23,juego.getMazo().getCartasRestantes());
+        assertEquals(1,juego.getCartasaUbicar().size());
+    }
 
     @Test
     public void testCambioModoDeJuego(){
@@ -264,6 +312,7 @@ public class AppTest
         assertEquals(4,juego.getCartasaUbicar().size());
 
     }
+
 
 
 }

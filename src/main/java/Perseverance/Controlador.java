@@ -14,9 +14,20 @@ public class Controlador implements ActionListener {
         this.juego = new Juego(nombre);
         this.tablero = new Tablero(juego,this);
         juego.registerObserver((Observer) tablero);
-        tablero.crearVentana();
+
     }
 
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void abrirTablero(){
+        tablero.crearVentana();
+    }
     public void setearModoUnaCarta(){
         ModoDeJuego modo = new UnaCarta();
         juego.setModoDeJuego(modo);
