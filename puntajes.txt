@@ -1,3 +1,7 @@
+gaston
+8256
+fachero
+6200
 Patricia
 5200
 Juan
@@ -14,7 +18,3 @@ Patricia
 1100
 test
 1000
-Javier
-900
-Jacinto
-760
