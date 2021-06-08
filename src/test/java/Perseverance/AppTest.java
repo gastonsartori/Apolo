@@ -248,7 +248,7 @@ public class AppTest
      * Integration tests
      */
 
-    @Test
+    @Test //001
     public void testEstadisticas(){
         Juego juego=new Juego("jugador");
         Estadisticas estadisticas=new Estadisticas(juego);
@@ -265,7 +265,7 @@ public class AppTest
 
     }
 
-    @Test
+    @Test //002
     public void testTablero(){
         Controlador controlador=new Controlador("jugador");
         Juego juego = controlador.getJuego();
@@ -284,7 +284,7 @@ public class AppTest
 
     }
 
-    @Test
+    @Test //003
     public void testTableroyCartas(){
         Controlador controlador=new Controlador("jugador");
         Juego juego= controlador.getJuego();
@@ -296,7 +296,7 @@ public class AppTest
         assertEquals(1,juego.getCartasaUbicar().size());
     }
 
-    @Test
+    @Test //004
     public void testCambioModoDeJuego(){
         Juego juego=new Juego("jugador");
         juego.pedirCartas();

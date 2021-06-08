@@ -33,7 +33,8 @@ public class VentanaConfig extends JFrame implements ActionListener {
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
 
-        registrarFuente();
+        fuente=new Font("Berlin Sans FB", 0,16);
+        //registrarFuente();
 
         nombre = new JTextField();
         nombre.setBounds(150,30,250,25);
