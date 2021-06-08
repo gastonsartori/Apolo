@@ -8,6 +8,8 @@ public class Controlador implements ActionListener {
 
     private Juego juego;
     private Tablero tablero;
+    private Estadisticas estadisticas;
+    private Reglas reglas;
 
     public Controlador(String nombre) {
         this.juego = new Juego(nombre);
@@ -47,13 +49,20 @@ public class Controlador implements ActionListener {
                     JOptionPane.YES_NO_OPTION);
             if (confirmed == JOptionPane.YES_OPTION) {
                 new VentanaConfig(tablero).crearVentana();
+                if(estadisticas != null){
+                    estadisticas.dispose();
+                }
+                if(reglas != null){
+                    reglas.dispose();
+                }
                 tablero.dispose();
             }
         }else if(boton.getName().equals("reglasTablero")){
-            new Reglas().crearVentana();
+            reglas=new Reglas();
+            reglas.crearVentana();
         }else if(boton.getName().equals("estadisticasTablero")){
-            Estadisticas estadisticas = new Estadisticas(juego);
-                    estadisticas.crearVentana();
+            estadisticas = new Estadisticas(juego);
+            estadisticas.crearVentana();
             juego.registerObserver((Observer) estadisticas);
         }else if(boton.getName().equals("menuPrincipalTablero")){
             int confirmed = JOptionPane.showConfirmDialog(null,
