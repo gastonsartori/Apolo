@@ -2,9 +2,7 @@ package Perseverance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -123,10 +121,37 @@ public class PuntajeHistorico extends JFrame {
                 puntajes.remove(10);
                 nombres.add(i,nombre);
                 nombres.remove(10);
+                guardarPuntajeArchivo();
                 return;
             }
         }
     }
+
+    public void guardarPuntajeArchivo(){
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter("puntajes.txt", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PrintWriter pw = new PrintWriter(fw, false);
+        pw.flush();
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("escribo");
+                pw.println(nombres.get(i));
+                pw.println(puntajes.get(i));
+        }
+        pw.close();
+        try {
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
 
 }
