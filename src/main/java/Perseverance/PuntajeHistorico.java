@@ -42,11 +42,10 @@ public class PuntajeHistorico extends JFrame {
             System.out.println(puntajes.get(i));
         }
 
-        crearLabels();
-
     }
 
     public void crearVentana(){
+        crearLabels();
         this.setSize( 250,430);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -115,6 +114,18 @@ public class PuntajeHistorico extends JFrame {
             add(label);
         }
 
+    }
+
+    public void guardarPuntaje(String nombre, int puntaje){
+        for (int i = 0; i < puntajes.size(); i++) {
+            if(Integer.parseInt(puntajes.get(i)) < puntaje){
+                puntajes.add(i,Integer.toString(puntaje));
+                puntajes.remove(10);
+                nombres.add(i,nombre);
+                nombres.remove(10);
+                return;
+            }
+        }
     }
 
 

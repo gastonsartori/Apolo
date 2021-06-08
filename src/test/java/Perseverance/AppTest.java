@@ -240,7 +240,7 @@ public class AppTest
         juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
         juego.actPuntacion();
 
-        assertEquals(1010,juego.getPuntacion());
+        assertEquals(1100,juego.getPuntacion());
     }
 
 

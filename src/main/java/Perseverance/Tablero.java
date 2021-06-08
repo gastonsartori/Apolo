@@ -114,6 +114,9 @@ public class Tablero extends JFrame implements Observer {
         primeraVez=false;
 
         if(win){
+            PuntajeHistorico ventanaPuntaje= new PuntajeHistorico();
+            ventanaPuntaje.guardarPuntaje(nombreJugador,puntaje);
+            ventanaPuntaje.crearVentana();
             juego.getTask().cancel();
             int confirmed = JOptionPane.showConfirmDialog(null,"¿Desea volver al menu principal?"
                     , "Felicidades, has ganado el juego!",

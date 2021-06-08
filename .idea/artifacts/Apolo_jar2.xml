@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Apolo:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Apolo_jar2</output-path>
+    <root id="archive" name="Apolo.jar">
+      <element id="module-output" name="Apolo" />
+    </root>
+  </artifact>
+</component>
