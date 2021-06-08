@@ -1,6 +1,5 @@
 package Perseverance;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import java.util.Timer;
@@ -93,8 +92,6 @@ public class Juego implements Subject{
 
     public boolean isWin() { return win; }
 
-    public Timer getTimer() { return timer; }
-
     public TimerTask getTask() { return task; }
 
     public void noWin(){ win=false; }
@@ -102,6 +99,7 @@ public class Juego implements Subject{
     public int getCartasMazo(){
         return mazo.getCartasRestantes() + cartasaUbicar.size();
     }
+
     public int getCartasJuego(){
         int cont=0;
         for (int i = 0; i < 7; i++) {
@@ -109,6 +107,7 @@ public class Juego implements Subject{
         }
         return cont;
     }
+
     public int getCartasEscalera(){
         int cont=0;
         for (int i = 0; i < 4; i++) {
@@ -339,9 +338,7 @@ public class Juego implements Subject{
         agregaraPila(cartas,pila);
         if(pila.getTipo().equals("escalera")) {
             if(!carta.isMovidaEscalera()) {
-                System.out.println("movi a escalera");
                 movimientosaEscaleras++;
-                System.out.println(movimientosaEscaleras);
                 carta.moveraEscalera();
 
             }
@@ -352,7 +349,6 @@ public class Juego implements Subject{
                 }
             }
         }
-        win=true;
         notifyObservers();
     }
 
@@ -368,8 +364,6 @@ public class Juego implements Subject{
         if(cont == 4) return true;
         return false;
     }
-
-
 
     public void actPuntacion(){
         bonificacionDeTiempo=5000-(segundos+minutos*60)*8;
@@ -390,8 +384,7 @@ public class Juego implements Subject{
     //observer
 
     @Override
-    public void registerObserver(Observer observer) { observers.add(observer);
-        System.out.println("añadi observer");}
+    public void registerObserver(Observer observer) { observers.add(observer); }
 
     @Override
     public void unregisterObserver(Observer observer) { observers.remove(observer); }

@@ -246,7 +246,10 @@ public class AppTest
 
     /**
      * Integration tests
-     *//*
+     */
+
+    /*
+
     @Test //001
     public void testEstadisticas(){
         Juego juego=new Juego("jugador");

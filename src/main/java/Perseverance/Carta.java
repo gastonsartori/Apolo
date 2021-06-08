@@ -36,11 +36,9 @@ public class Carta {
     }
 
     public void seleccionar(){
-        System.out.println("selecciono");
         this.imagen = new ImageIcon("images/" + this.toString() + "Seleccionada.png");
     }
     public void deseleccionar(){
-        System.out.println("deselecciono");
         this.imagen = new ImageIcon("images/" + this.toString() + ".png");
     }
     public void moveraEscalera(){

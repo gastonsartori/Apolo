@@ -26,10 +26,12 @@ public class Controlador implements ActionListener {
     public void abrirTablero(){
         tablero.crearVentana();
     }
+
     public void setearModoUnaCarta(){
         ModoDeJuego modo = new UnaCarta();
         juego.setModoDeJuego(modo);
     }
+
     public void setearModoTresCartas(){
         ModoDeJuego modo = new TresCartas();
         juego.setModoDeJuego(modo);

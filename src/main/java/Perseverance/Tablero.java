@@ -2,11 +2,7 @@ package Perseverance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
 
 public class Tablero extends JFrame implements Observer {
 
@@ -58,8 +54,6 @@ public class Tablero extends JFrame implements Observer {
 
         this.juego = juego;
 
-        registrarFuente();
-
         escaleras = new ArrayList<>();
         cartasDeJuego = new ArrayList<>();
         primeraVez=true;
@@ -67,6 +61,8 @@ public class Tablero extends JFrame implements Observer {
 
         puntaje = juego.getPuntacion();
         movimientosExitosos = 0;
+
+        fuente=new Font("Berlin Sans FB", 0,16);
 
         update();
 
@@ -94,8 +90,8 @@ public class Tablero extends JFrame implements Observer {
 
     }
 
-    public JLabel getTiempoNum() {
-        return tiempoNum;
+    public JButton getMazo() {
+        return mazo;
     }
 
     public JLabel getMovimientosNum() {
@@ -106,8 +102,8 @@ public class Tablero extends JFrame implements Observer {
         return puntuacionNum;
     }
 
-    public JButton getMazo() {
-        return mazo;
+    public JLabel getTiempoNum() {
+        return tiempoNum;
     }
 
     @Override
@@ -147,7 +143,6 @@ public class Tablero extends JFrame implements Observer {
             win();
         }
     }
-
 
     public void crearVentana() {
         this.setBounds(0, 0, 1280, 830);
@@ -330,16 +325,6 @@ public class Tablero extends JFrame implements Observer {
         }
     }
 
-    public void registrarFuente() {
-        try {
-            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(fuente);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void recargarBotonesModo() {
         if (!(unaCarta == null || tresCartas == null)) {
             if (modoDeJuego.getModo().equals("unaCarta")) {
@@ -426,47 +411,5 @@ public class Tablero extends JFrame implements Observer {
 
     }
 
-    /*
-    for (int i = 0; i < pilasDeJuego.size(); i++) {
-        ArrayList<JButton> visibles = new ArrayList<>();
-        ArrayList<JLabel> noVisibles = new ArrayList<>();
-        if(pilasDeJuego.get(i).getPila().isEmpty()) {
-            JButton cartaVisible = new JButton();
-            cartaVisible.setBounds(89 + (168 * i), 245 , 98, 117);
-            cartaVisible.setIcon(new ImageIcon("images/transparenteEscalera.png"));
-            cartaVisible.setBorderPainted(false);
-            cartaVisible.setContentAreaFilled(false);
-            cartaVisible.setName("vacia" + i);
-            cartaVisible.addActionListener(controlador);
-            add(cartaVisible);
-            visibles.add(cartaVisible);
-        }else{
-            for (int j = pilasDeJuego.get(i).getPila().size()-1; j >= 0; j--) {
-                if(pilasDeJuego.get(i).getPila().get(j).isVisible()) {
-                    JButton cartaVisible = new JButton();
-                    cartaVisible.setBounds(89 + (168 * i), 245 + (22 * j), 98, 117);
-                    cartaVisible.setIcon(pilasDeJuego.get(i).getPila().get(j).getImagen());
-                    cartaVisible.setBorderPainted(false);
-                    cartaVisible.setContentAreaFilled(false);
-                    cartaVisible.setName("juego" + i + j );
-                    cartaVisible.addActionListener(controlador);
-                    add(cartaVisible);
-                    visibles.add(cartaVisible);
-                }else{
-                    JLabel cartaNoVisible = new JLabel();
-                    cartaNoVisible.setBounds(89 + (168 * i), 245 + (22 * j), 98, 117);
-                    cartaNoVisible.setIcon(pilasDeJuego.get(i).getPila().get(j).getImagen());
-                    add(cartaNoVisible);
-                    noVisibles.add(cartaNoVisible);
-                }
-            }
-        }
-        cartasVisibles.add(visibles);
-        cartasNoVisibles.add(noVisibles);
-    }
-    revalidate();
-    repaint();
-
-    */
 
 }

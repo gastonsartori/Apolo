@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 public class VentanaConfig extends JFrame implements ActionListener {
     private JFrame menuPrincipal;
@@ -34,7 +32,6 @@ public class VentanaConfig extends JFrame implements ActionListener {
         setIconImage(icono.getImage());
 
         fuente=new Font("Berlin Sans FB", 0,16);
-        //registrarFuente();
 
         nombre = new JTextField();
         nombre.setBounds(150,30,250,25);
@@ -136,17 +133,5 @@ public class VentanaConfig extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
-    public void registrarFuente(){
-        try {
-            //create the font to use. Specify the size!
-            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(fuente);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

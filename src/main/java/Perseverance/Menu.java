@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-
 
 public class Menu extends JFrame implements ActionListener {
 
@@ -15,7 +12,6 @@ public class Menu extends JFrame implements ActionListener {
     private JButton reglas;
     private JButton puntajes;
     private JLabel fondo;
-    private JLabel titulo;
     private Font fuente;
 
     public Menu(){
@@ -25,7 +21,7 @@ public class Menu extends JFrame implements ActionListener {
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
 
-        registrarFuente();
+        fuente=new Font("Berlin Sans FB", 0,16);
 
         jugar = new JButton("Jugar");
         jugar.setHorizontalTextPosition(jugar.CENTER);
@@ -73,9 +69,6 @@ public class Menu extends JFrame implements ActionListener {
         add(fondo);
     }
 
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton boton = (JButton) e.getSource();
@@ -101,18 +94,5 @@ public class Menu extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-    }
-    public void registrarFuente(){
-        try {
-            //create the font to use. Specify the size!
-            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(fuente);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
-        }
     }
 }

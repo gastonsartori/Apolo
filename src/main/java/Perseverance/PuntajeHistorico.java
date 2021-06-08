@@ -12,9 +12,6 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
 
     private ArrayList<String> nombres;
     private ArrayList<String> puntajes;
-    private ArrayList<JLabel> nombresLabel;
-    private ArrayList<JLabel> puntajesLabel;
-    private Font fuente;
 
     public PuntajeHistorico(){
         setLayout(null);
@@ -24,17 +21,6 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
 
         nombres = new ArrayList<>();
         puntajes = new ArrayList<>();
-
-        /*area = new JTextArea();
-        area.setEditable(false);
-        area.setLineWrap(true);
-        area.setWrapStyleWord(true);
-        area.setSize(800,600);
-        registrarFuente();
-        area.setFont(fuente);
-        area.setBackground(new Color(255,255,255));
-        add(area);
-        leerArchivo();*/
 
         leerArchivo();
 
@@ -80,6 +66,7 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
             }
         }
     }
+
     public void crearLabels(){
 
         JLabel nombre = new JLabel("  Jugador");
@@ -167,7 +154,7 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
         ok.setBackground(new Color(230,230,230));
         ok.setFocusPainted(false);
         ok.addActionListener(this);
-        ok.setFont(fuente);
+        ok.setFont(new Font("Berlin Sans FB", 0,16));
         add(ok);
 
     }

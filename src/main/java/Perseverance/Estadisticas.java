@@ -2,8 +2,6 @@ package Perseverance;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Estadisticas extends JFrame implements Observer {
 
@@ -52,7 +50,7 @@ public class Estadisticas extends JFrame implements Observer {
         setTitle("Estadisticas");
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
-        registrarFuente();
+        fuente=new Font("Berlin Sans FB", 0,16);
 
         cantMov = juego.getMovimientosExitosos();
         puntTiempoNum = juego.getPuntacionTiempo();
@@ -230,17 +228,4 @@ public class Estadisticas extends JFrame implements Observer {
         this.setResizable(false);
     }
 
-    public void registrarFuente(){
-        try {
-            //create the font to use. Specify the size!
-            fuente = Font.createFont(Font.TRUETYPE_FONT, new File("font\\TitilliumWeb.ttf")).deriveFont(18f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(fuente);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch(FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
 }
