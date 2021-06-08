@@ -10,11 +10,9 @@ public class Controlador implements ActionListener {
     private Tablero tablero;
 
     public Controlador(String nombre) {
-        System.out.println("creo controlador");
         this.juego = new Juego(nombre);
         this.tablero = new Tablero(juego,this);
         juego.registerObserver((Observer) tablero);
-
     }
 
     public Juego getJuego() {

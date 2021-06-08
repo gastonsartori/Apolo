@@ -97,6 +97,8 @@ public class Juego implements Subject{
 
     public TimerTask getTask() { return task; }
 
+    public void noWin(){ win=false; }
+
     public int getCartasMazo(){
         return mazo.getCartasRestantes() + cartasaUbicar.size();
     }
@@ -350,6 +352,7 @@ public class Juego implements Subject{
                 }
             }
         }
+        win=true;
         notifyObservers();
     }
 

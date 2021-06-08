@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 public class Tablero extends JFrame implements Observer {
 
     private JButton nuevoJuego;
@@ -113,7 +115,6 @@ public class Tablero extends JFrame implements Observer {
         pilasDeJuego = juego.getPilasJuego();
         pilasDeEscalera = juego.getPilasEscalera();
         cartasaUbicar = juego.getCartasaUbicar();
-        System.out.println(cartasaUbicar.size());
         mazoVacio = juego.getMazoVacio();
         puntaje = juego.getPuntacion();
         movimientosExitosos = juego.getMovimientosExitosos();
@@ -129,21 +130,6 @@ public class Tablero extends JFrame implements Observer {
         }
         primeraVez=false;
 
-        if(win){
-            PuntajeHistorico ventanaPuntaje= new PuntajeHistorico();
-            ventanaPuntaje.guardarPuntaje(nombreJugador,puntaje);
-            ventanaPuntaje.crearVentana();
-            juego.getTask().cancel();
-            int confirmed = JOptionPane.showConfirmDialog(null,"¿Desea volver al menu principal?"
-                    , "Felicidades, has ganado el juego!",
-                    JOptionPane.YES_NO_OPTION);
-            if (confirmed == JOptionPane.YES_OPTION) {
-                new Menu().crearVentana();
-                dispose();
-            }else{
-                System.exit(0);
-            }
-        }
     }
 
     public void recargarVentana() {
@@ -156,6 +142,10 @@ public class Tablero extends JFrame implements Observer {
         puntuacionNum.setText(String.valueOf(puntaje));
         tiempoNum.setText(String.format("%02d",minutos)+ " : " + String.format("%02d",segundos));
 
+        if(win){
+            juego.noWin();
+            win();
+        }
     }
 
 
@@ -424,6 +414,15 @@ public class Tablero extends JFrame implements Observer {
                 cartasDeJuego.get(i).get(18).setIcon(new ImageIcon("images/transparenteEscalera.png"));
             }
         }
+
+    }
+
+    public void win(){
+        PuntajeHistorico ventanaPuntaje= new PuntajeHistorico();
+        ventanaPuntaje.guardarPuntaje(nombreJugador,puntaje);
+        ventanaPuntaje.ventanaWin();
+        ventanaPuntaje.crearVentana(550);
+        juego.getTask().cancel();
 
     }
 

@@ -2,11 +2,13 @@ package Perseverance;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PuntajeHistorico extends JFrame {
+public class PuntajeHistorico extends JFrame implements ActionListener {
 
     private ArrayList<String> nombres;
     private ArrayList<String> puntajes;
@@ -35,16 +37,12 @@ public class PuntajeHistorico extends JFrame {
         leerArchivo();*/
 
         leerArchivo();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(nombres.get(i));
-            System.out.println(puntajes.get(i));
-        }
 
     }
 
-    public void crearVentana(){
+    public void crearVentana(int i){
         crearLabels();
-        this.setSize( 250,430);
+        this.setSize( 250,i);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -138,7 +136,6 @@ public class PuntajeHistorico extends JFrame {
         pw.flush();
 
         for (int i = 0; i < 10; i++) {
-            System.out.println("escribo");
                 pw.println(nombres.get(i));
                 pw.println(puntajes.get(i));
         }
@@ -151,7 +148,32 @@ public class PuntajeHistorico extends JFrame {
 
     }
 
+    public void ventanaWin(){
 
+        JLabel label = new JLabel("FELICITACIONES!");
+        label.setFont(new Font("Berlin Sans FB", 0,16));
+        label.setBounds(45,370,300,25);
+        add(label);
 
+        JLabel label2 = new JLabel("Has ganado la partida!");
+        label2.setFont(new Font("Berlin Sans FB", 0,16));
+        label2.setBounds(35,400,300,25);
+        add(label2);
 
+        JButton ok = new JButton("Aceptar");
+        ok.setHorizontalTextPosition(ok.CENTER);
+        ok.setVerticalTextPosition(ok.CENTER);
+        ok.setBounds(40, 440, 150,40);
+        ok.setBackground(new Color(230,230,230));
+        ok.setFocusPainted(false);
+        ok.addActionListener(this);
+        ok.setFont(fuente);
+        add(ok);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+    }
 }
