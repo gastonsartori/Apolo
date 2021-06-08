@@ -246,8 +246,7 @@ public class AppTest
 
     /**
      * Integration tests
-     */
-
+     *//*
     @Test //001
     public void testEstadisticas(){
         Juego juego=new Juego("jugador");
@@ -295,7 +294,7 @@ public class AppTest
         assertEquals(23,juego.getMazo().getCartasRestantes());
         assertEquals(1,juego.getCartasaUbicar().size());
     }
-
+    */
     @Test //004
     public void testCambioModoDeJuego(){
         Juego juego=new Juego("jugador");
