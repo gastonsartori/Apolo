@@ -56,21 +56,33 @@ public class PuntajeHistorico extends JFrame {
     public void leerArchivo() {
         File archivo = new File("puntajes.txt");
         String texto="";
-        int i = 0;
+        int x = 0;
         try {
             Scanner scan = new Scanner(archivo);
             while (scan.hasNextLine()){
                 texto=scan.nextLine();
-                if(i%2 == 0){
+                if(x%2 == 0){
                     nombres.add(texto);
                 }
                 else{
                     puntajes.add(texto);
                 }
-                i++;
+                x++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+
+        for (int i = 0; i < puntajes.size()-1; i++) {
+            for (int j = 0; j < puntajes.size()-i-1; j++) {
+                if(Integer.parseInt(puntajes.get(j+1)) > Integer.parseInt(puntajes.get(j))){
+                    String aux = puntajes.get(j+1);
+                    puntajes.add(j+1,puntajes.get(j));
+                    puntajes.remove(j+2);
+                    puntajes.add(j,aux);
+                    puntajes.remove(j+1);
+                }
+            }
         }
     }
     public void crearLabels(){
