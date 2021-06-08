@@ -352,7 +352,6 @@ public class Juego implements Subject{
                 }
             }
         }
-        win=true;
         notifyObservers();
     }
 
