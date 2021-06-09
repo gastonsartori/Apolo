@@ -366,8 +366,12 @@ public class Juego implements Subject{
     }
 
     public void actPuntacion(){
-        bonificacionDeTiempo=5000-(segundos+minutos*60)*8;
 
+        bonificacionDeTiempo = 5000 - (segundos + minutos * 60) * 8;
+
+        if(bonificacionDeTiempo<0){
+            bonificacionDeTiempo=0;
+        }
         puntuacion=bonificacionDeTiempo + getPuntacionMovimientos();
     }
 
