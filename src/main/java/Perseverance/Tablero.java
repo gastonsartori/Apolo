@@ -403,13 +403,11 @@ public class Tablero extends JFrame implements Observer {
     }
 
     public void win(){
-        PuntajeHistorico ventanaPuntaje= new PuntajeHistorico();
+        PuntajeHistorico ventanaPuntaje= new PuntajeHistorico(this);
         ventanaPuntaje.guardarPuntaje(nombreJugador,puntaje);
         ventanaPuntaje.ventanaWin();
         ventanaPuntaje.crearVentana(550);
         juego.getTask().cancel();
-
     }
-
 
 }
