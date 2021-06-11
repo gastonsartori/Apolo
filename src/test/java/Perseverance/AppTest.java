@@ -249,7 +249,7 @@ public class AppTest
      */
 
 
-
+    /*
     @Test //001
     public void testEstadisticas(){
         Juego juego=new Juego("jugador");
@@ -265,31 +265,29 @@ public class AppTest
 
         assertEquals("100",estadisticas.getPuntMov().getText());
         assertEquals(puntajeTiempo,estadisticas.getPuntTiempo().getText());
-        */
 
     }
 
     @Test //002
     public void testTablero(){
-        //Controlador controlador=new Controlador("jugador");
-        //Juego juego = controlador.getJuego();
-        //Tablero tablero= controlador.getTablero();
+        Controlador controlador=new Controlador("jugador");
+        Juego juego = controlador.getJuego();
+        Tablero tablero= controlador.getTablero();
 
         Juego juego=new Juego("jugador");
-        //Carta carta = new Carta(Palo.Diamantes,Valor.As);
-        //juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
-        //juego.detenerTiempo();
-        //String tiempo=String.format("%02d",juego.getMinutos())+ " : " + String.format("%02d",juego.getSegundos());
-        //String puntuacion=String.valueOf(juego.getPuntacion());
+        Carta carta = new Carta(Palo.Diamantes,Valor.As);
+        juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
+        juego.detenerTiempo();
+        String tiempo=String.format("%02d",juego.getMinutos())+ " : " + String.format("%02d",juego.getSegundos());
+        String puntuacion=String.valueOf(juego.getPuntacion());
         //debemos verificar si la informacion de juego, se comunica correctamente a tablero
 
-        //assertEquals(tiempo,tablero.getTiempoNum().getText());
-        //assertEquals("1",tablero.getMovimientosNum().getText());
-        //assertEquals(puntuacion,tablero.getPuntuacionNum().getText());
+        assertEquals(tiempo,tablero.getTiempoNum().getText());
+        assertEquals("1",tablero.getMovimientosNum().getText());
+        assertEquals(puntuacion,tablero.getPuntuacionNum().getText());
 
     }
 
-    /*
     @Test //003
     public void testTableroyCartas(){
         Controlador controlador=new Controlador("jugador");
@@ -302,6 +300,7 @@ public class AppTest
         assertEquals(1,juego.getCartasaUbicar().size());
     }
     */
+
     @Test //004
     public void testCambioModoDeJuego(){
         Juego juego=new Juego("jugador");
