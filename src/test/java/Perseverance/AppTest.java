@@ -248,7 +248,7 @@ public class AppTest
      * Integration tests
      */
 
-    /*
+
 
     @Test //001
     public void testEstadisticas(){
@@ -269,23 +269,25 @@ public class AppTest
 
     @Test //002
     public void testTablero(){
-        Controlador controlador=new Controlador("jugador");
-        Juego juego = controlador.getJuego();
-        Tablero tablero= controlador.getTablero();
+        //Controlador controlador=new Controlador("jugador");
+        //Juego juego = controlador.getJuego();
+        //Tablero tablero= controlador.getTablero();
 
-        Carta carta = new Carta(Palo.Diamantes,Valor.As);
-        juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
-        juego.detenerTiempo();
-        String tiempo=String.format("%02d",juego.getMinutos())+ " : " + String.format("%02d",juego.getSegundos());
-        String puntuacion=String.valueOf(juego.getPuntacion());
+        Juego juego=new Juego("jugador");
+        //Carta carta = new Carta(Palo.Diamantes,Valor.As);
+        //juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
+        //juego.detenerTiempo();
+        //String tiempo=String.format("%02d",juego.getMinutos())+ " : " + String.format("%02d",juego.getSegundos());
+        //String puntuacion=String.valueOf(juego.getPuntacion());
         //debemos verificar si la informacion de juego, se comunica correctamente a tablero
 
-        assertEquals(tiempo,tablero.getTiempoNum().getText());
-        assertEquals("1",tablero.getMovimientosNum().getText());
-        assertEquals(puntuacion,tablero.getPuntuacionNum().getText());
+        //assertEquals(tiempo,tablero.getTiempoNum().getText());
+        //assertEquals("1",tablero.getMovimientosNum().getText());
+        //assertEquals(puntuacion,tablero.getPuntuacionNum().getText());
 
     }
 
+    /*
     @Test //003
     public void testTableroyCartas(){
         Controlador controlador=new Controlador("jugador");
