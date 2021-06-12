@@ -16,6 +16,7 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
+
     @Test //001
     public void testCrearMazo() {
         Mazo mazo=new Mazo();
@@ -243,11 +244,9 @@ public class AppTest
         assertEquals(5100,juego.getPuntacion());
     }
 
-
     /**
      * Integration tests
      */
-
 
     /*
     @Test //001
@@ -256,7 +255,6 @@ public class AppTest
         Estadisticas estadisticas=new Estadisticas(juego);
         juego.registerObserver((Observer)estadisticas);
 
-        /*
         Carta carta = new Carta(Palo.Diamantes,Valor.As);
         juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
         juego.detenerTiempo();
@@ -274,7 +272,6 @@ public class AppTest
         Juego juego = controlador.getJuego();
         Tablero tablero= controlador.getTablero();
 
-        Juego juego=new Juego("jugador");
         Carta carta = new Carta(Palo.Diamantes,Valor.As);
         juego.agregaraPila(carta, juego.getPilasEscalera().get(0));
         juego.detenerTiempo();
@@ -299,8 +296,8 @@ public class AppTest
         assertEquals(23,juego.getMazo().getCartasRestantes());
         assertEquals(1,juego.getCartasaUbicar().size());
     }
-    */
 
+    */
     @Test //004
     public void testCambioModoDeJuego(){
         Juego juego=new Juego("jugador");
@@ -317,7 +314,5 @@ public class AppTest
         assertEquals(4,juego.getCartasaUbicar().size());
 
     }
-
-
 
 }

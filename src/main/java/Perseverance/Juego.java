@@ -64,9 +64,13 @@ public class Juego implements Subject{
 
     public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
 
-    public int getPuntacion() { return puntuacion; }
+    public int getPuntacion() {
+        actPuntacion();
+        return puntuacion; }
 
-    public int getPuntacionTiempo(){return bonificacionDeTiempo;};
+    public int getPuntacionTiempo(){
+        actPuntacion();
+        return bonificacionDeTiempo;};
 
     public int getPuntacionMovimientos(){return movimientosaEscaleras*100;};
 
