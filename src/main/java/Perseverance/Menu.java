@@ -80,10 +80,10 @@ public class Menu extends JFrame implements ActionListener {
             new Reglas().crearVentana();
         }
         else if(boton.equals(puntajes)){
-            new PuntajeHistorico().crearVentana(430);
+            new PuntajeHistorico(null).crearVentana(430);
         }
         else if(boton.equals(salir)){
-            dispose();
+            System.exit(0);
         }
 
     }

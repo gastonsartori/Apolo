@@ -12,12 +12,14 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
 
     private ArrayList<String> nombres;
     private ArrayList<String> puntajes;
+    private Tablero tablero;
 
-    public PuntajeHistorico(){
+    public PuntajeHistorico(Tablero tablero){
         setLayout(null);
         setTitle("Puntajes Historicos");
         ImageIcon icono = new ImageIcon("images/icono.png");
         setIconImage(icono.getImage());
+        this.tablero=tablero;
 
         nombres = new ArrayList<>();
         puntajes = new ArrayList<>();
@@ -147,20 +149,40 @@ public class PuntajeHistorico extends JFrame implements ActionListener {
         label2.setBounds(35,400,300,25);
         add(label2);
 
-        JButton ok = new JButton("Aceptar");
+        JButton ok = new JButton("Menu");
         ok.setHorizontalTextPosition(ok.CENTER);
         ok.setVerticalTextPosition(ok.CENTER);
-        ok.setBounds(40, 440, 150,40);
+        ok.setBounds(30, 440, 80,40);
         ok.setBackground(new Color(230,230,230));
         ok.setFocusPainted(false);
         ok.addActionListener(this);
         ok.setFont(new Font("Berlin Sans FB", 0,16));
         add(ok);
 
+        JButton salir = new JButton("Salir");
+        salir.setHorizontalTextPosition(salir.CENTER);
+        salir.setVerticalTextPosition(salir.CENTER);
+        salir.setBounds(125, 440, 80,40);
+        salir.setBackground(new Color(230,230,230));
+        salir.setFocusPainted(false);
+        salir.addActionListener(this);
+        salir.setFont(new Font("Berlin Sans FB", 0,16));
+        add(salir);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.exit(0);
+        JButton boton = (JButton) e.getSource();
+
+        if(boton.getText().equals("Menu")){
+            tablero.dispose();
+            dispose();
+            new Menu().crearVentana();
+        }
+        else if(boton.getText().equals("Salir")){
+            System.exit(0);
+        }
+
     }
 }

@@ -16,6 +16,7 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
+
     @Test //001
     public void testCrearMazo() {
         Mazo mazo=new Mazo();
@@ -243,13 +244,11 @@ public class AppTest
         assertEquals(5100,juego.getPuntacion());
     }
 
-
     /**
      * Integration tests
      */
 
     /*
-
     @Test //001
     public void testEstadisticas(){
         Juego juego=new Juego("jugador");
@@ -297,6 +296,7 @@ public class AppTest
         assertEquals(23,juego.getMazo().getCartasRestantes());
         assertEquals(1,juego.getCartasaUbicar().size());
     }
+
     */
     @Test //004
     public void testCambioModoDeJuego(){
@@ -314,7 +314,5 @@ public class AppTest
         assertEquals(4,juego.getCartasaUbicar().size());
 
     }
-
-
 
 }

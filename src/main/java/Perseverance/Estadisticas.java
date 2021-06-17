@@ -228,4 +228,5 @@ public class Estadisticas extends JFrame implements Observer {
         this.setResizable(false);
     }
 
+
 }

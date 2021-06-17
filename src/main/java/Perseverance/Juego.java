@@ -39,7 +39,7 @@ public class Juego implements Subject{
         movimientosaEscaleras=0;
         movimientosExitosos=0;
         this.nombre=nombre;
-        bonificacionDeTiempo=1000;
+        bonificacionDeTiempo=0;
         actPuntacion();
         observers=new ArrayList<>();
         cartaSeleccionada=null;
@@ -64,9 +64,13 @@ public class Juego implements Subject{
 
     public ArrayList<PilaEnZonaDeEscalera> getPilasEscalera() { return pilasEscalera; }
 
-    public int getPuntacion() { return puntuacion; }
+    public int getPuntacion() {
+        actPuntacion();
+        return puntuacion; }
 
-    public int getPuntacionTiempo(){return bonificacionDeTiempo;};
+    public int getPuntacionTiempo(){
+        actPuntacion();
+        return bonificacionDeTiempo;};
 
     public int getPuntacionMovimientos(){return movimientosaEscaleras*100;};
 
@@ -366,8 +370,12 @@ public class Juego implements Subject{
     }
 
     public void actPuntacion(){
-        bonificacionDeTiempo=5000-(segundos+minutos*60)*8;
 
+        bonificacionDeTiempo = 5000 - (segundos + minutos * 60) * 8;
+
+        if(bonificacionDeTiempo<0){
+            bonificacionDeTiempo=0;
+        }
         puntuacion=bonificacionDeTiempo + getPuntacionMovimientos();
     }
 
