@@ -3,36 +3,19 @@ package Perseverance;
 import javax.swing.*;
 
 public class Carta {
-    public enum Palo{
-        Diamantes, Corazones, Treboles, Picas;
-
-        private static final Palo[] palos = Palo.values();
-        public static Palo getPalo(int i){
-            return Palo.palos[i];
-        }
-
-    }
-
-    public enum Valor{
-        As, Dos, Tres, Cuatro, Cinco, Seis, Siete, Ocho, Nueve, Diez, J, Q, K;
-
-        private static final Valor[] valores = Valor.values();
-        public static Valor getValor(int i){ return Valor.valores[i]; }
-
-    }
 
     private final Valor valor;
     private final Palo palo;
     private boolean visible;
     private ImageIcon imagen;
-
-
+    private boolean movidaEscalera;
 
     public Carta(Palo palo, Valor valor){
         this.valor = valor;
         this.palo = palo;
         this.visible=false;
-        imagen = new ImageIcon("imagenbocaabajo");
+        imagen = new ImageIcon("images/reversocarta.png");
+        movidaEscalera=false;
     }
 
     public Valor getValor() { return valor; }
@@ -43,9 +26,23 @@ public class Carta {
 
     public ImageIcon getImagen() { return imagen; }
 
+    public boolean isMovidaEscalera() { return movidaEscalera; }
+
     public void darVuelta(){
-        this.visible=true;
-        this.imagen=new ImageIcon("imagenbocaarriba");
+        if(!visible) {
+            this.visible = true;
+            this.imagen = new ImageIcon("images/" + this.toString() + ".png");
+        }
+    }
+
+    public void seleccionar(){
+        this.imagen = new ImageIcon("images/" + this.toString() + "Seleccionada.png");
+    }
+    public void deseleccionar(){
+        this.imagen = new ImageIcon("images/" + this.toString() + ".png");
+    }
+    public void moveraEscalera(){
+        movidaEscalera=true;
     }
 
     @Override

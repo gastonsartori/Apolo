@@ -5,19 +5,17 @@ import java.util.Collections;
 
 public class Mazo {
     private ArrayList<Carta> mazo;
-    private int cartasRestantes;
 
     public Mazo() {
         this.mazo = new ArrayList<Carta>();
         this.crearMazo();
-        cartasRestantes=mazo.size();
         this.mezclar();
     }
 
     public void crearMazo(){
 
-        Carta.Palo[] palos = Carta.Palo.values();
-        Carta.Valor[] valores = Carta.Valor.values();
+        Palo[] palos = Palo.values();
+        Valor[] valores = Valor.values();
 
         for (int i = 0; i < palos.length; i++) {
             for (int j = 0; j < valores.length; j++) {
@@ -26,25 +24,29 @@ public class Mazo {
         }
     }
 
+    public void setMazo(ArrayList<Carta> mazo) { this.mazo = mazo; }
+
     public void mezclar(){
         Collections.shuffle(mazo);
     }
 
-    public int getCartasRestantes() {
-        return cartasRestantes;
-    }
+    public int getCartasRestantes() { return mazo.size(); }
 
     public ArrayList<Carta> getMazo() {
         return mazo;
     }
 
     public Carta getUltimaCarta(){
-        Carta ultima=mazo.get(cartasRestantes-1);
+        if(mazo.isEmpty()){
+            return null;
+        }
+        Carta ultima=mazo.get(getCartasRestantes()-1);
         //VER DE AGREGAR PARA SACAR ULTIMA
         return ultima;
     }
 
+
     public void quitarUltimaCarta(){
-        mazo.remove(cartasRestantes-1);
+       mazo.remove(getCartasRestantes() - 1);
     }
 }
