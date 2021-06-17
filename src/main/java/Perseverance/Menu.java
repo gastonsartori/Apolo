@@ -83,7 +83,7 @@ public class Menu extends JFrame implements ActionListener {
             new PuntajeHistorico(null).crearVentana(430);
         }
         else if(boton.equals(salir)){
-            dispose();
+            System.exit(0);
         }
 
     }

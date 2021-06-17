@@ -39,7 +39,7 @@ public class Juego implements Subject{
         movimientosaEscaleras=0;
         movimientosExitosos=0;
         this.nombre=nombre;
-        bonificacionDeTiempo=1000;
+        bonificacionDeTiempo=0;
         actPuntacion();
         observers=new ArrayList<>();
         cartaSeleccionada=null;
